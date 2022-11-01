@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,6 +8,10 @@ import java.util.Objects;
 public class StationRepository {
 
     private static final List<Station> stations = new ArrayList<>();
+
+    public StationRepository(List<String> stationList) {
+        stationList.forEach(station -> stations.add(new Station(station)));
+    }
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
