@@ -1,13 +1,15 @@
 package subway.model;
 
+import java.util.List;
+
 public class Line {
 
     private String name;
-    private StationRepository stationRepository;
+    private Stations stations;
 
-    public Line(String name, StationRepository stationRepository) {
+    public Line(String name, List<String> stations) {
         this.name = name;
-        this.stationRepository = stationRepository;
+        this.stations = new Stations(stations);
     }
 
     public String getName() {

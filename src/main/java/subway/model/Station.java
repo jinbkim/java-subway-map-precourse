@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.model;
 
 public class Station {
 

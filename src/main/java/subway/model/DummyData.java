@@ -18,11 +18,10 @@ public enum DummyData {
 
     public static void insert() {
         Map<String, List<String>> lineAndStations = getAllDummyData();
-        lineAndStations.forEach((line, stations) -> {
-            StationRepository stationRepository = new StationRepository(stations);
-            Line subwayLine = new Line(line, stationRepository);
 
-            LineRepository.addLine(subwayLine);
+        lineAndStations.forEach((line, stations) -> {
+            stations.forEach(station -> StationRepository.add(new Station(station)));
+            LineRepository.add(new Line(line, stations));
         });
     }
 
