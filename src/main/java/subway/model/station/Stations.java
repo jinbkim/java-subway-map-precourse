@@ -1,4 +1,4 @@
-package subway.model;
+package subway.model.station;
 
 import java.util.ArrayList;
 import java.util.List;

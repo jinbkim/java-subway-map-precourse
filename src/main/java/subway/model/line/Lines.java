@@ -1,4 +1,4 @@
-package subway.model;
+package subway.model.line;
 
 import java.util.ArrayList;
 import java.util.List;

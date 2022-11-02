@@ -1,6 +1,7 @@
-package subway.model;
+package subway.model.line;
 
 import java.util.List;
+import subway.model.station.Stations;
 
 public class Line {
 

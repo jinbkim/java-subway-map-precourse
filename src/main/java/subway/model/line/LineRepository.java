@@ -1,4 +1,4 @@
-package subway.model;
+package subway.model.line;
 
 public class LineRepository {
 
