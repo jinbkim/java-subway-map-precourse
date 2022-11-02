@@ -16,8 +16,9 @@ public class OutputView {
     private static final String SUBWAY_MAP = "## 지하철 노선도";
     private static final String SECTION_LINE = "---";
     private static final String INFO_MESSAGE_FORM = "[INFO] %s\n";
-
-    //    private static final String REQUEST_REGISTER_STATION = "## 등록할 역 이름을 입력하세요.";
+    private static final String REQUEST_REGISTER_STATION = "## 등록할 역 이름을 입력하세요.";
+    private static final String REQUEST_DELETE_STATION = "## 삭제할 역 이름을 입력하세요.";
+    private static final String STATION_LIST = "## 역 목록";
     //    private static final String REGISTER_STATION = "지하철 역이 등록되었습니다.";
 
     public static void printMainScreen() {
@@ -65,10 +66,16 @@ public class OutputView {
         return String.format(INFO_MESSAGE_FORM, station.getName());
     }
 
-    //    public static void printRequestRegisterStation() {
-    //        System.out.println();
-    //        System.out.println(REQUEST_REGISTER_STATION);
-    //    }
+    public static void printRequestRegisterStation() {
+        System.out.println();
+        System.out.println(REQUEST_REGISTER_STATION);
+    }
+
+    public static void printRequestDeleteStation() {
+        System.out.println();
+        System.out.println(REQUEST_DELETE_STATION);
+    }
+
     //
     //
     //    public static void printRegisterStation() {

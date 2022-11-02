@@ -26,8 +26,13 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    //    public static String requestRegisterStation() {
-    //        OutputView.printRequestRegisterStation();
-    //        return scanner.nextLine();
-    //    }
+    public static String requestRegisterStation() {
+        OutputView.printRequestRegisterStation();
+        return scanner.nextLine();
+    }
+
+    public static String requestDeleteStation() {
+        OutputView.printRequestDeleteStation();
+        return scanner.nextLine();
+    }
 }
