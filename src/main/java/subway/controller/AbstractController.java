@@ -1,6 +1,6 @@
 package subway.controller;
 
-public abstract class AbstractController implements Controller{
+public abstract class AbstractController implements Controller {
 
     abstract public void run();
 }

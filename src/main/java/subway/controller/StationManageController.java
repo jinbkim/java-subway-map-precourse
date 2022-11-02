@@ -1,9 +1,11 @@
 package subway.controller;
 
-public class StationManageController extends AbstractController{
+import subway.view.InputView;
+
+public class StationManageController extends AbstractController {
 
     @Override
     public void run() {
-
+        InputView.requestStationManageScreenSelect();
     }
 }

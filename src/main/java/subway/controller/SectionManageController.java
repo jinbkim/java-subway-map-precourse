@@ -1,6 +1,6 @@
 package subway.controller;
 
-public class SectionManageController extends AbstractController{
+public class SectionManageController extends AbstractController {
 
     @Override
     public void run() {
