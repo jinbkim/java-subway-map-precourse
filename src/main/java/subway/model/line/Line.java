@@ -17,5 +17,8 @@ public class Line {
         return name;
     }
 
+    public Stations getStations() {
+        return stations;
+    }
     // 추가 기능 구현
 }

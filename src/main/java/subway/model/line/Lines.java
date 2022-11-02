@@ -10,4 +10,8 @@ public class Lines {
     public void add(Line line) {
         lines.add(line);
     }
+
+    public List<Line> get() {
+        return lines;
+    }
 }

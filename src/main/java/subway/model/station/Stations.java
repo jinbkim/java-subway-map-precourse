@@ -21,4 +21,7 @@ public class Stations {
         stations.add(station);
     }
 
+    public List<Station> get() {
+        return stations;
+    }
 }
