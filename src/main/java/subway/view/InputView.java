@@ -21,6 +21,11 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public static String requestSectionManageScreenSelect() {
+        OutputView.printSectionManageScreen();
+        return scanner.nextLine();
+    }
+
     //    public static String requestRegisterStation() {
     //        OutputView.printRequestRegisterStation();
     //        return scanner.nextLine();
