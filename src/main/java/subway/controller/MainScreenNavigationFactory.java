@@ -10,6 +10,7 @@ public class MainScreenNavigationFactory {
     private static final String TWO = "2";
     private static final String THREE = "3";
     private static final String FOUR = "4";
+    private static final String QUIT = "Q";
 
     private static final Map<String, Supplier<Controller>> controllerRecipe = new HashMap<>();
 
@@ -18,6 +19,7 @@ public class MainScreenNavigationFactory {
         controllerRecipe.put(TWO, LineManageController::new);
         controllerRecipe.put(THREE, SectionManageController::new);
         controllerRecipe.put(FOUR, MapPrintController::new);
+        controllerRecipe.put(QUIT, EndController::new);
     }
 
     public static Controller of(String select) {

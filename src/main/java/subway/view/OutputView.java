@@ -41,6 +41,7 @@ public class OutputView {
     }
 
     public static void printSubwayMap() {
+        System.out.println(SUBWAY_MAP);
         LineRepository.get()
             .get()
             .forEach(line -> System.out.println(lineToString(line)));
