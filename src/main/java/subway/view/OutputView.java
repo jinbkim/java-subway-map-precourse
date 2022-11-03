@@ -22,6 +22,7 @@ public class OutputView {
     private static final String STATION_LIST = "## 역 목록";
     private static final String REQUEST_REGISTER_LINE = "## 등록할 노선 이름을 입력하세요.";
     private static final String REQUEST_DELETE_LINE = "## 삭제할 노선 이름을 입력하세요.";
+    private static final String LINE_LIST = "## 노선 목록";
 
     //    private static final String REGISTER_STATION = "지하철 역이 등록되었습니다.";
 
@@ -77,6 +78,14 @@ public class OutputView {
     public static void printRequestLineDelete() {
         System.out.println();
         System.out.println(REQUEST_DELETE_LINE);
+    }
+
+    public static void printLineList() {
+        System.out.println();
+        System.out.println(LINE_LIST);
+        LineRepository.get()
+            .forEach(line -> System.out.print(String.format(INFO_MESSAGE_FORM, line.getName())));
+        System.out.println();
     }
 
     //
