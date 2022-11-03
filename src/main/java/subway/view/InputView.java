@@ -35,4 +35,14 @@ public class InputView {
         OutputView.printRequestDeleteStation();
         return scanner.nextLine();
     }
+
+    public static String requestRegisterLine() {
+        OutputView.printRequestLineRegister();
+        return scanner.nextLine();
+    }
+
+    public static String requestDeleteLine() {
+        OutputView.printRequestLineDelete();
+        return scanner.nextLine();
+    }
 }

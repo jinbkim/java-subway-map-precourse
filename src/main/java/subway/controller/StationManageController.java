@@ -7,7 +7,8 @@ public class StationManageController extends AbstractController {
     @Override
     public void run() {
         String stationManageSelect = InputView.requestStationManageScreenSelect();
-        Controller controller = StationManagementFactory.of(stationManageSelect);
+        Controller controller = StationManageFactory.of(stationManageSelect);
+
         controller.run();
     }
 }

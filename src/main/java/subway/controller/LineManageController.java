@@ -6,6 +6,9 @@ public class LineManageController extends AbstractController {
 
     @Override
     public void run() {
-        InputView.requestLineManageScreenSelect();
+        String lineManageSelect = InputView.requestLineManageScreenSelect();
+        Controller controller = LineManageFactory.of(lineManageSelect);
+
+        controller.run();
     }
 }

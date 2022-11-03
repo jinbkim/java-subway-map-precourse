@@ -1,5 +1,7 @@
 package subway.model.station;
 
+import java.util.List;
+
 public class StationRepository {
 
     private static final Stations stations = new Stations();
@@ -11,8 +13,8 @@ public class StationRepository {
     //    public static boolean deleteStation(String name) {
     //        return stations.removeIf(station -> Objects.equals(station.getName(), name));
     //    }
-가
-    public static Stations get() {
-        return stations;
+
+    public static List<Station> get() {
+        return stations.get();
     }
 }

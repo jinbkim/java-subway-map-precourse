@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class StationManagementFactory {
+public class StationManageFactory {
 
     private static final String ONE = "1";
     private static final String TWO = "2";

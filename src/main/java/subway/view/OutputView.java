@@ -20,6 +20,9 @@ public class OutputView {
     private static final String REQUEST_REGISTER_STATION = "## 등록할 역 이름을 입력하세요.";
     private static final String REQUEST_DELETE_STATION = "## 삭제할 역 이름을 입력하세요.";
     private static final String STATION_LIST = "## 역 목록";
+    private static final String REQUEST_REGISTER_LINE = "## 등록할 노선 이름을 입력하세요.";
+    private static final String REQUEST_DELETE_LINE = "## 삭제할 노선 이름을 입력하세요.";
+
     //    private static final String REGISTER_STATION = "지하철 역이 등록되었습니다.";
 
     public static void printMainScreen() {
@@ -45,7 +48,6 @@ public class OutputView {
     public static void printSubwayMap() {
         System.out.println(SUBWAY_MAP);
         LineRepository.get()
-            .get()
             .forEach(line -> System.out.println(lineToString(line)));
     }
 
@@ -63,9 +65,18 @@ public class OutputView {
         System.out.println();
         System.out.println(STATION_LIST);
         StationRepository.get()
-            .get()
             .forEach(station -> System.out.print(stationToString(station)));
         System.out.println();
+    }
+
+    public static void printRequestLineRegister() {
+        System.out.println();
+        System.out.println(REQUEST_REGISTER_LINE);
+    }
+
+    public static void printRequestLineDelete() {
+        System.out.println();
+        System.out.println(REQUEST_DELETE_LINE);
     }
 
     //
