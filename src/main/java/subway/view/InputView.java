@@ -66,5 +66,15 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public static String requestStation() {
+        OutputView.printRequestStation();
+        return scanner.nextLine();
+    }
+
+    public static int requestOrder() {
+        OutputView.printRequestOrder();
+        return Integer.parseInt(scanner.nextLine());
+    }
+
 
 }

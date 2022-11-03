@@ -28,6 +28,12 @@ public class Stations {
         }
     }
 
+    public void add(Station station, int order) {
+        if (!stations.contains(station)) {
+            stations.add(order, station);
+        }
+    }
+
     public boolean delete(String name) {
         return stations.removeIf(station -> station.isSameName(name));
     }

@@ -6,6 +6,8 @@ import subway.model.station.Stations;
 
 public class Line {
 
+    private static final int ONE = 1;
+
     private String name;
     private Stations stations;
 
@@ -21,6 +23,10 @@ public class Line {
 
     public boolean isSameName(String name) {
         return this.name.equals(name);
+    }
+
+    public void addStation(String stationName, int order) {
+        stations.add(new Station(stationName), order - ONE);
     }
 
     public String getName() {

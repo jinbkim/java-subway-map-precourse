@@ -31,6 +31,8 @@ public class OutputView {
     private static final String REQUEST_REGISTER_LINE_LAST_STATION = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String REGISTER_LINE_COMPLETE = "지하철 노선이 등록되었습니다.";
     private static final String DELETE_LINE_COMPLETE = "지하철 노선이 삭제되었습니다.";
+    private static final String REQUEST_STATION = "## 역이름을 입력하세요.";
+    private static final String REQUEST_ORDER = "## 순서를 입력하세요.";
 
     public static void printMainScreen() {
         System.out.println(MAIN_SCREEN);
@@ -130,6 +132,16 @@ public class OutputView {
     public static void printDeleteLineComplete() {
         System.out.println();
         System.out.println(DELETE_LINE_COMPLETE);
+    }
+
+    public static void printRequestStation() {
+        System.out.println();
+        System.out.println(REQUEST_STATION);
+    }
+
+    public static void printRequestOrder() {
+        System.out.println();
+        System.out.println(REQUEST_ORDER);
     }
 
 

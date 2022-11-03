@@ -14,6 +14,10 @@ public class LineRepository {
         return lines.delete(name);
     }
 
+    public static void addSection(String lineName, String stationName, int order) {
+        lines.addSection(lineName, stationName, order);
+    }
+
     public static List<Line> get() {
         return lines.get();
     }

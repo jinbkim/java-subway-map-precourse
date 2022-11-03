@@ -15,6 +15,15 @@ public class Lines {
         return lines;
     }
 
+    public void addSection(String lineName, String stationName, int order) {
+        Line line = lines.stream()
+            .filter(l -> l.isSameName(lineName))
+            .findFirst()
+            .orElse(null);
+
+        line.addStation(stationName, order);
+    }
+
     public boolean delete(String name) {
         return lines.removeIf(line -> line.isSameName(name));
     }
