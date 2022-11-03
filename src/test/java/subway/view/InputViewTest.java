@@ -54,6 +54,28 @@ class InputViewTest {
     }
 
     @Test
+    void 노선관리화면_예외처리() {
+        Assertions.assertThatCode(() -> InputView.validateLineManageScreenSelect("  1  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateLineManageScreenSelect("  2  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateLineManageScreenSelect("  3  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateLineManageScreenSelect("  b  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateLineManageScreenSelect("  B  "))
+            .doesNotThrowAnyException();
+
+        Assertions.assertThatThrownBy(() -> InputView.validateLineManageScreenSelect("0"));
+        Assertions.assertThatThrownBy(() -> InputView.validateLineManageScreenSelect("11"));
+        Assertions.assertThatThrownBy(() -> InputView.validateLineManageScreenSelect("5"));
+        Assertions.assertThatThrownBy(() -> InputView.validateLineManageScreenSelect("1a"));
+        Assertions.assertThatThrownBy(() -> InputView.validateLineManageScreenSelect("a"));
+        Assertions.assertThatThrownBy(() -> InputView.validateLineManageScreenSelect(""));
+        Assertions.assertThatThrownBy(() -> InputView.validateLineManageScreenSelect(" "));
+    }
+
+    @Test
     void 역관리_역등록_예외처리() {
         Assertions.assertThatCode(() -> InputView.validateStation("  a b  "))
             .doesNotThrowAnyException();
@@ -68,4 +90,5 @@ class InputViewTest {
         Assertions.assertThatThrownBy(() -> InputView.validateStation(""));
         Assertions.assertThatThrownBy(() -> InputView.validateStation(" "));
     }
+
 }

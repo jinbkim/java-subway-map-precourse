@@ -10,6 +10,7 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String MAIN_SCREEN_SELECT_REGEX = "^[1234qQ]$";
     private static final String STATION_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
+    private static final String LINE_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
     private static final String STATION_REGEX = "^.{2,}$";
 
     public static String requestMainScreenSelect() {
@@ -50,7 +51,20 @@ public class InputView {
 
     public static String requestLineManageScreenSelect() {
         OutputView.printLineManageScreen();
-        return scanner.nextLine();
+        try {
+            return validateLineManageScreenSelect(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestStationManageScreenSelect();
+        }
+    }
+
+    static String validateLineManageScreenSelect(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!Pattern.matches(LINE_MANAGE_SCREEN_SELECT_REGEX, input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestSectionManageScreenSelect() {
@@ -79,7 +93,6 @@ public class InputView {
     private static boolean isExistStation(String stationName) {
         return StationRepository.isExist(stationName);
     }
-
 
     public static String requestDeleteStation() {
         OutputView.printRequestDeleteStation();
