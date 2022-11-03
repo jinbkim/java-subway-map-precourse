@@ -10,9 +10,9 @@ public class StationRepository {
         stations.add(station);
     }
 
-    //    public static boolean deleteStation(String name) {
-    //        return stations.removeIf(station -> Objects.equals(station.getName(), name));
-    //    }
+    public static boolean delete(String name) {
+        return stations.delete(name);
+    }
 
     public static List<Station> get() {
         return stations.get();

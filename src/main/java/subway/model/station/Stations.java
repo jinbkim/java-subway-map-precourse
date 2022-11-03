@@ -18,7 +18,13 @@ public class Stations {
     }
 
     public void add(Station station) {
-        stations.add(station);
+        if (!stations.contains(station)) {
+            stations.add(station);
+        }
+    }
+
+    public boolean delete(String name) {
+        return stations.removeIf(station -> station.isSameName(name));
     }
 
     public List<Station> get() {

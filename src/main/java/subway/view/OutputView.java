@@ -26,6 +26,7 @@ public class OutputView {
     private static final String REQUEST_LINE = "## 노선을 입력하세요.";
     private static final String REQUEST_DELETE_SECTION_LINE = "## 삭제할 구간의 노선을 입력하세요.";
     private static final String REGISTER_STATION_COMPLETE = "지하철 역이 등록되었습니다.";
+    private static final String DELETE_STATION_COMPLETE = "지하철 역이 삭제되었습니다.";
 
     public static void printMainScreen() {
         System.out.println(MAIN_SCREEN);
@@ -102,6 +103,11 @@ public class OutputView {
         System.out.println(String.format(INFO_MESSAGE_FORM, REGISTER_STATION_COMPLETE));
     }
 
+    public static void printDeleteStationComplete() {
+        System.out.println();
+        System.out.println(String.format(INFO_MESSAGE_FORM, DELETE_STATION_COMPLETE));
+    }
+
 
     private static String lineToString(Line line) {
         String lineName = String.format(INFO_MESSAGE_FORM, line.getName());
@@ -120,4 +126,5 @@ public class OutputView {
     private static String stationToString(Station station) {
         return String.format(INFO_MESSAGE_FORM, station.getName());
     }
+
 }
