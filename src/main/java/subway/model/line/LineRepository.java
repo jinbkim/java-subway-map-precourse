@@ -10,9 +10,10 @@ public class LineRepository {
         lines.add(line);
     }
 
-    //    public static boolean deleteLineByName(String name) {
-    //        return lines.removeIf(line -> Objects.equals(line.getName(), name));
-    //    }
+    public static boolean delete(String name) {
+        return lines.delete(name);
+    }
+
     public static List<Line> get() {
         return lines.get();
     }

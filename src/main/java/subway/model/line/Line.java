@@ -19,6 +19,10 @@ public class Line {
         stations = new Stations(new Station(firstStation), new Station(lastStation));
     }
 
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
+    }
+
     public String getName() {
         return name;
     }

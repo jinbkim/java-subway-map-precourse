@@ -14,4 +14,8 @@ public class Lines {
     public List<Line> get() {
         return lines;
     }
+
+    public boolean delete(String name) {
+        return lines.removeIf(line -> line.isSameName(name));
+    }
 }
