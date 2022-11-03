@@ -11,4 +11,8 @@ public class StationRepository {
     //    public static boolean deleteStation(String name) {
     //        return stations.removeIf(station -> Objects.equals(station.getName(), name));
     //    }
+가
+    public static Stations get() {
+        return stations;
+    }
 }

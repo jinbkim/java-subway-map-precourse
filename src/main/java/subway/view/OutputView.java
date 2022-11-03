@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 import subway.model.line.Line;
 import subway.model.line.LineRepository;
 import subway.model.station.Station;
+import subway.model.station.StationRepository;
 import subway.model.station.Stations;
 
 public class OutputView {
@@ -48,6 +49,33 @@ public class OutputView {
             .forEach(line -> System.out.println(lineToString(line)));
     }
 
+    public static void printRequestRegisterStation() {
+        System.out.println();
+        System.out.println(REQUEST_REGISTER_STATION);
+    }
+
+    public static void printRequestDeleteStation() {
+        System.out.println();
+        System.out.println(REQUEST_DELETE_STATION);
+    }
+
+    public static void printStationList() {
+        System.out.println();
+        System.out.println(STATION_LIST);
+        StationRepository.get()
+            .get()
+            .forEach(station -> System.out.print(stationToString(station)));
+        System.out.println();
+    }
+
+    //
+    //
+    //    public static void printRegisterStation() {
+    //        System.out.println();
+    //        System.out.println(INFO + REGISTER_STATION);
+    //    }
+
+
     private static String lineToString(Line line) {
         String lineName = String.format(INFO_MESSAGE_FORM, line.getName());
         String sectionLine = String.format(INFO_MESSAGE_FORM, SECTION_LINE);
@@ -65,21 +93,4 @@ public class OutputView {
     private static String stationToString(Station station) {
         return String.format(INFO_MESSAGE_FORM, station.getName());
     }
-
-    public static void printRequestRegisterStation() {
-        System.out.println();
-        System.out.println(REQUEST_REGISTER_STATION);
-    }
-
-    public static void printRequestDeleteStation() {
-        System.out.println();
-        System.out.println(REQUEST_DELETE_STATION);
-    }
-
-    //
-    //
-    //    public static void printRegisterStation() {
-    //        System.out.println();
-    //        System.out.println(INFO + REGISTER_STATION);
-    //    }
 }
