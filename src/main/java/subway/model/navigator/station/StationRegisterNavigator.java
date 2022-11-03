@@ -1,9 +1,9 @@
 package subway.model.navigator.station;
 
-import subway.model.navigator.AbstractNavigator;
+import subway.model.navigator.Navigator;
 import subway.view.InputView;
 
-public class StationRegisterNavigator extends AbstractNavigator {
+public class StationRegisterNavigator implements Navigator {
 
     @Override
     public void run() {

@@ -1,11 +1,10 @@
 package subway.model.navigator.main;
 
-import subway.model.navigator.AbstractNavigator;
 import subway.model.navigator.Navigator;
 import subway.model.navigator.line.LineManageFactory;
 import subway.view.InputView;
 
-public class LineManageNavigator extends AbstractNavigator {
+public class LineManageNavigator implements Navigator {
 
     @Override
     public void run() {

@@ -1,8 +1,8 @@
 package subway.model.navigator.main;
 
-import subway.model.navigator.AbstractNavigator;
+import subway.model.navigator.Navigator;
 
-public class EndNavigator extends AbstractNavigator {
+public class EndNavigator implements Navigator {
 
     @Override
     public void run() {

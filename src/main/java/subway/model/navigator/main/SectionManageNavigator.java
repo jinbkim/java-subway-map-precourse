@@ -1,9 +1,9 @@
 package subway.model.navigator.main;
 
-import subway.model.navigator.AbstractNavigator;
+import subway.model.navigator.Navigator;
 import subway.view.InputView;
 
-public class SectionManageNavigator extends AbstractNavigator {
+public class SectionManageNavigator implements Navigator {
 
     @Override
     public void run() {

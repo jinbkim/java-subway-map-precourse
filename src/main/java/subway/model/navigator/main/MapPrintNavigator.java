@@ -1,9 +1,9 @@
 package subway.model.navigator.main;
 
-import subway.model.navigator.AbstractNavigator;
+import subway.model.navigator.Navigator;
 import subway.view.OutputView;
 
-public class MapPrintNavigator extends AbstractNavigator {
+public class MapPrintNavigator implements Navigator {
 
     @Override
     public void run() {
