@@ -76,6 +76,26 @@ class InputViewTest {
     }
 
     @Test
+    void 구간관리화면_예외처리() {
+        Assertions.assertThatCode(() -> InputView.validateSectionManageScreenSelect("  1  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateSectionManageScreenSelect("  2  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateSectionManageScreenSelect("  b  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateSectionManageScreenSelect("  B  "))
+            .doesNotThrowAnyException();
+
+        Assertions.assertThatThrownBy(() -> InputView.validateSectionManageScreenSelect("0"));
+        Assertions.assertThatThrownBy(() -> InputView.validateSectionManageScreenSelect("11"));
+        Assertions.assertThatThrownBy(() -> InputView.validateSectionManageScreenSelect("3"));
+        Assertions.assertThatThrownBy(() -> InputView.validateSectionManageScreenSelect("1a"));
+        Assertions.assertThatThrownBy(() -> InputView.validateSectionManageScreenSelect("a"));
+        Assertions.assertThatThrownBy(() -> InputView.validateSectionManageScreenSelect(""));
+        Assertions.assertThatThrownBy(() -> InputView.validateSectionManageScreenSelect(" "));
+    }
+
+    @Test
     void 역관리_역등록_예외처리() {
         Assertions.assertThatCode(() -> InputView.validateStation("  a b  "))
             .doesNotThrowAnyException();

@@ -11,6 +11,8 @@ public class InputView {
     private static final String MAIN_SCREEN_SELECT_REGEX = "^[1234qQ]$";
     private static final String STATION_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
     private static final String LINE_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
+    private static final String SECTION_MANAGE_SCREEN_SELECT_REGEX = "^[12bB]$";
+
     private static final String STATION_REGEX = "^.{2,}$";
 
     public static String requestMainScreenSelect() {
@@ -69,7 +71,20 @@ public class InputView {
 
     public static String requestSectionManageScreenSelect() {
         OutputView.printSectionManageScreen();
-        return scanner.nextLine();
+        try {
+            return validateSectionManageScreenSelect(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestSectionManageScreenSelect();
+        }
+    }
+
+    static String validateSectionManageScreenSelect(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!Pattern.matches(SECTION_MANAGE_SCREEN_SELECT_REGEX, input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestRegisterStation() {
