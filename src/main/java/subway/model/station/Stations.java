@@ -11,6 +11,11 @@ public class Stations {
     public Stations() {
     }
 
+    public Stations(Station firstStation, Station lastStation) {
+        stations.add(firstStation);
+        stations.add(lastStation);
+    }
+
     public Stations(List<String> stations) {
         this.stations = stations.stream()
             .map(Station::new)

@@ -1,6 +1,7 @@
 package subway.model.line;
 
 import java.util.List;
+import subway.model.station.Station;
 import subway.model.station.Stations;
 
 public class Line {
@@ -11,6 +12,11 @@ public class Line {
     public Line(String name, List<String> stations) {
         this.name = name;
         this.stations = new Stations(stations);
+    }
+
+    public Line(String name, String firstStation, String lastStation) {
+        this.name = name;
+        stations = new Stations(new Station(firstStation), new Station(lastStation));
     }
 
     public String getName() {

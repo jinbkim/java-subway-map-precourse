@@ -55,4 +55,16 @@ public class InputView {
         OutputView.printRequestDeleteSectionLine();
         return scanner.nextLine();
     }
+
+    public static String requestRegisterLineFirstStation() {
+        OutputView.printRequestRegisterLineFirstStation();
+        return scanner.nextLine();
+    }
+
+    public static String requestRegisterLineLastStation() {
+        OutputView.printRequestRegisterLineLastStation();
+        return scanner.nextLine();
+    }
+
+
 }
