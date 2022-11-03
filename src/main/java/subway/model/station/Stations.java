@@ -34,8 +34,8 @@ public class Stations {
         }
     }
 
-    public boolean delete(String name) {
-        return stations.removeIf(station -> station.isSameName(name));
+    public boolean delete(String stationName) {
+        return stations.removeIf(station -> station.isSameName(stationName));
     }
 
     public List<Station> get() {

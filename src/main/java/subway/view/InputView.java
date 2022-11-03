@@ -76,5 +76,10 @@ public class InputView {
         return Integer.parseInt(scanner.nextLine());
     }
 
+    public static String requestDeleteSectionStation() {
+        OutputView.printRequestDeleteSectionStation();
+        return scanner.nextLine();
+    }
+
 
 }

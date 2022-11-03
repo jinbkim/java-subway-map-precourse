@@ -29,6 +29,10 @@ public class Line {
         stations.add(new Station(stationName), order - ONE);
     }
 
+    public void deleteStation(String stationName) {
+        stations.delete(stationName);
+    }
+
     public String getName() {
         return name;
     }

@@ -13,7 +13,7 @@ public class LineDeleteNavigator implements Navigator {
         Navigator mainScreenNavigator = new MainScreenNavigator();
         String deleteLine = InputView.requestDeleteLine();
 
-        LineRepository.delete(deleteLine);
+        LineRepository.deleteLine(deleteLine);
         OutputView.printDeleteLineComplete();
         mainScreenNavigator.run();
     }
