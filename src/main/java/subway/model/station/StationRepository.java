@@ -1,6 +1,7 @@
 package subway.model.station;
 
 import java.util.List;
+import subway.model.line.LineRepository;
 
 public class StationRepository {
 
@@ -10,8 +11,9 @@ public class StationRepository {
         stations.add(station);
     }
 
-    public static boolean delete(String name) {
-        return stations.delete(name);
+    public static void delete(String stationName) {
+        stations.delete(stationName);
+        LineRepository.deleteStation(stationName);
     }
 
     public static List<Station> get() {

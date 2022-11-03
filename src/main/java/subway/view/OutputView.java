@@ -38,6 +38,7 @@ public class OutputView {
     private static final String REQUEST_DELETE_SECTION_STATION = "삭제할 구간의 역을 입력하세요.";
     private static final String DELETE_SECTION_COMPLETE = "구간이 삭제되었습니다.";
     private static final String WRONG_INPUT = "잘못된 입력값 입니다.";
+    private static final String NEWLINE = "\n";
 
     public static final void printInfoMessage(String message) {
         System.out.print(String.format(INFO_MESSAGE_FORM, message));
@@ -57,12 +58,14 @@ public class OutputView {
     }
 
     public static void printMainScreen() {
+        System.out.println();
         printMessage(MAIN_SCREEN);
         System.out.println();
         printMessage(SELECT_FUNCTION);
     }
 
     public static void printStationManageScreen() {
+        System.out.println();
         printMessage(STATION_MANAGE_SCREEN);
         System.out.println();
         printMessage(SELECT_FUNCTION);
@@ -80,9 +83,10 @@ public class OutputView {
     }
 
     public static void printSubwayMap() {
+        System.out.println();
         printMessage(SUBWAY_MAP);
         LineRepository.get()
-            .forEach(line -> System.out.println(lineToString(line)));
+            .forEach(line -> System.out.print(lineToString(line)));
     }
 
     public static void printRequestRegisterStation() {
@@ -184,7 +188,7 @@ public class OutputView {
         String lineName = String.format(INFO_MESSAGE_FORM, line.getName());
         String sectionLine = String.format(INFO_MESSAGE_FORM, SECTION_LINE);
 
-        return lineName + sectionLine + stationsToString(line.getStations());
+        return NEWLINE + lineName + sectionLine + stationsToString(line.getStations());
     }
 
     private static String stationsToString(Stations stations) {

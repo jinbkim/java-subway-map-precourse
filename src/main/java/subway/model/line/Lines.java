@@ -15,14 +15,18 @@ public class Lines {
         return lines;
     }
 
+    public void deleteStation(String stationName) {
+        lines.forEach(line -> line.deleteStation(stationName));
+    }
+
+    public void deleteLine(String name) {
+        lines.removeIf(line -> line.isSameName(name));
+    }
+
     public void addSection(String lineName, String stationName, int order) {
         Line line = findLineByName(lineName);
 
         line.addStation(stationName, order);
-    }
-
-    public boolean deleteLine(String name) {
-        return lines.removeIf(line -> line.isSameName(name));
     }
 
     public void deleteSection(String lineName, String stationName) {

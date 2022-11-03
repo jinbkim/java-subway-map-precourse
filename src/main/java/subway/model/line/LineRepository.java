@@ -10,8 +10,12 @@ public class LineRepository {
         lines.add(line);
     }
 
-    public static boolean deleteLine(String lineName) {
-        return lines.deleteLine(lineName);
+    public static void deleteStation(String stationName) {
+        lines.deleteStation(stationName);
+    }
+
+    public static void deleteLine(String lineName) {
+        lines.deleteLine(lineName);
     }
 
     public static void addSection(String lineName, String stationName, int order) {
