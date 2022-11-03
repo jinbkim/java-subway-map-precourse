@@ -8,6 +8,7 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static final String MAIN_SCREEN_SELECT_REGEX = "^[1234qQ]$";
+    private static final String STATION_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
 
     public static String requestMainScreenSelect() {
         OutputView.printMainScreen();
@@ -29,7 +30,20 @@ public class InputView {
 
     public static String requestStationManageScreenSelect() {
         OutputView.printStationManageScreen();
-        return scanner.nextLine();
+        try {
+            return validateStationManageScreenSelect(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestStationManageScreenSelect();
+        }
+    }
+
+    static String validateStationManageScreenSelect(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!Pattern.matches(STATION_MANAGE_SCREEN_SELECT_REGEX, input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestLineManageScreenSelect() {

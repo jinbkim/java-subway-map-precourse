@@ -28,4 +28,26 @@ class InputViewTest {
         Assertions.assertThatThrownBy(() -> InputView.validateMainScreenSelect(""));
         Assertions.assertThatThrownBy(() -> InputView.validateMainScreenSelect(" "));
     }
+
+    @Test
+    void 역관리화면_예외처리() {
+        Assertions.assertThatCode(() -> InputView.validateStationManageScreenSelect("  1  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateStationManageScreenSelect("  2  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateStationManageScreenSelect("  3  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateStationManageScreenSelect("  b  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateStationManageScreenSelect("  B  "))
+            .doesNotThrowAnyException();
+
+        Assertions.assertThatThrownBy(() -> InputView.validateStationManageScreenSelect("0"));
+        Assertions.assertThatThrownBy(() -> InputView.validateStationManageScreenSelect("11"));
+        Assertions.assertThatThrownBy(() -> InputView.validateStationManageScreenSelect("5"));
+        Assertions.assertThatThrownBy(() -> InputView.validateStationManageScreenSelect("1a"));
+        Assertions.assertThatThrownBy(() -> InputView.validateStationManageScreenSelect("a"));
+        Assertions.assertThatThrownBy(() -> InputView.validateStationManageScreenSelect(""));
+        Assertions.assertThatThrownBy(() -> InputView.validateStationManageScreenSelect(" "));
+    }
 }
