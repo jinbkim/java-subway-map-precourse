@@ -37,6 +37,7 @@ public class OutputView {
     private static final String REQUEST_ORDER = "순서를 입력하세요.";
     private static final String REQUEST_DELETE_SECTION_STATION = "삭제할 구간의 역을 입력하세요.";
     private static final String DELETE_SECTION_COMPLETE = "구간이 삭제되었습니다.";
+    private static final String WRONG_INPUT = "잘못된 입력값 입니다.";
 
     public static final void printInfoMessage(String message) {
         System.out.print(String.format(INFO_MESSAGE_FORM, message));
@@ -48,6 +49,10 @@ public class OutputView {
 
     public static final void printErrorMessage(String message) {
         System.out.print(String.format(ERROR_MESSAGE_FORM, message));
+    }
+
+    public static void printWrongInput() {
+        System.out.println(WRONG_INPUT);
     }
 
     public static void printMainScreen() {

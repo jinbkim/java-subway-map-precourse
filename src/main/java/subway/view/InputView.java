@@ -1,14 +1,30 @@
 package subway.view;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import subway.utils.Utils;
 
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
+    private static final String MAIN_SCREEN_SELECT_REGEX = "^[1234qQ]$";
 
     public static String requestMainScreenSelect() {
         OutputView.printMainScreen();
-        return scanner.nextLine();
+        try {
+            return validateMainScreenSelect(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestMainScreenSelect();
+        }
+    }
+
+    static String validateMainScreenSelect(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!Pattern.matches(MAIN_SCREEN_SELECT_REGEX, input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestStationManageScreenSelect() {
