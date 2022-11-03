@@ -41,4 +41,9 @@ public class Lines {
             .findFirst()
             .orElse(null);
     }
+
+    public boolean isExist(String lineName) {
+        return lines.stream()
+            .anyMatch(line -> line.isSameName(lineName));
+    }
 }

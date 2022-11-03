@@ -26,6 +26,10 @@ public class LineRepository {
         lines.deleteSection(lineName, stationName);
     }
 
+    public static boolean isExist(String lineName) {
+        return lines.isExist(lineName);
+    }
+
     public static List<Line> get() {
         return lines.get();
     }

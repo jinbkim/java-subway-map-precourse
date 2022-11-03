@@ -1,7 +1,10 @@
 package subway.view;
 
+import java.util.Arrays;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import subway.model.line.Line;
+import subway.model.line.LineRepository;
 import subway.model.station.Station;
 import subway.model.station.StationRepository;
 
@@ -121,5 +124,21 @@ class InputViewTest {
             .doesNotThrowAnyException();
 
         Assertions.assertThatThrownBy(() -> InputView.validateDeleteStation("아현역"));
+    }
+
+    @Test
+    void 노선관리_노선등록_예외처리() {
+        Assertions.assertThatCode(() -> InputView.validateRegisterLine("9호선"))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateRegisterLine("  9 호 선  "))
+            .doesNotThrowAnyException();
+
+        LineRepository.add(new Line(" 9 호 선 ", Arrays.asList("아무나역")));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterLine(" 술 "));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterLine("술"));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterLine(" 9 호 선 "));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterLine("9호선"));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterLine(""));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterLine(" "));
     }
 }

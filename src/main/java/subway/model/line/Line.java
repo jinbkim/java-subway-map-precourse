@@ -3,6 +3,7 @@ package subway.model.line;
 import java.util.List;
 import subway.model.station.Station;
 import subway.model.station.Stations;
+import subway.utils.Utils;
 
 public class Line {
 
@@ -12,7 +13,7 @@ public class Line {
     private Stations stations;
 
     public Line(String name, List<String> stations) {
-        this.name = name;
+        this.name = Utils.deleteAllSpace(name);
         this.stations = new Stations(stations);
     }
 

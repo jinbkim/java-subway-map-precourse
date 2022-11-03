@@ -9,6 +9,7 @@ import subway.model.station.Stations;
 
 public class OutputView {
 
+    private static final String NEWLINE = "\n";
     private static final String SECTION_LINE = "---";
     private static final String MESSAGE_FROM = "## %s\n";
     private static final String INFO_MESSAGE_FORM = "[INFO] %s\n";
@@ -38,7 +39,6 @@ public class OutputView {
     private static final String REQUEST_DELETE_SECTION_STATION = "삭제할 구간의 역을 입력하세요.";
     private static final String DELETE_SECTION_COMPLETE = "구간이 삭제되었습니다.";
     private static final String WRONG_INPUT = "잘못된 입력값 입니다.";
-    private static final String NEWLINE = "\n";
 
     public static final void printInfoMessage(String message) {
         System.out.print(String.format(INFO_MESSAGE_FORM, message));

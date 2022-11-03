@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import subway.model.line.LineRepository;
 import subway.model.station.StationRepository;
 import subway.utils.Utils;
 
@@ -14,6 +15,7 @@ public class InputView {
     private static final String SECTION_MANAGE_SCREEN_SELECT_REGEX = "^[12bB]$";
 
     private static final String STATION_REGEX = "^.{2,}$";
+    private static final String LINE_REGEX = "^.{2,}$";
 
     public static String requestMainScreenSelect() {
         OutputView.printMainScreen();
@@ -129,7 +131,24 @@ public class InputView {
 
     public static String requestRegisterLine() {
         OutputView.printRequestLineRegister();
-        return scanner.nextLine();
+        try {
+            return validateRegisterLine(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterLine();
+        }
+    }
+
+    static String validateRegisterLine(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!Pattern.matches(LINE_REGEX, input) || isExistLine(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
+    }
+
+    private static boolean isExistLine(String lineName) {
+        return LineRepository.isExist(lineName);
     }
 
     public static String requestDeleteLine() {
