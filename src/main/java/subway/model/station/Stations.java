@@ -38,6 +38,11 @@ public class Stations {
         return stations.removeIf(station -> station.isSameName(stationName));
     }
 
+    public boolean isExist(String stationName) {
+        return stations.stream()
+            .anyMatch(station -> station.isSameName(stationName));
+    }
+
     public List<Station> get() {
         return stations;
     }

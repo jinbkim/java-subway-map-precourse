@@ -2,6 +2,8 @@ package subway.view;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import subway.model.station.Station;
+import subway.model.station.StationRepository;
 
 class InputViewTest {
 
@@ -49,5 +51,21 @@ class InputViewTest {
         Assertions.assertThatThrownBy(() -> InputView.validateStationManageScreenSelect("a"));
         Assertions.assertThatThrownBy(() -> InputView.validateStationManageScreenSelect(""));
         Assertions.assertThatThrownBy(() -> InputView.validateStationManageScreenSelect(" "));
+    }
+
+    @Test
+    void 역관리_역등록_예외처리() {
+        Assertions.assertThatCode(() -> InputView.validateStation("  a b  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateStation("  충 정 로 역  "))
+            .doesNotThrowAnyException();
+
+        StationRepository.add(new Station("충정로역"));
+        Assertions.assertThatThrownBy(() -> InputView.validateStation(" 술 "));
+        Assertions.assertThatThrownBy(() -> InputView.validateStation("술"));
+        Assertions.assertThatThrownBy(() -> InputView.validateStation(" 충  정  로  역 "));
+        Assertions.assertThatThrownBy(() -> InputView.validateStation("충정로역"));
+        Assertions.assertThatThrownBy(() -> InputView.validateStation(""));
+        Assertions.assertThatThrownBy(() -> InputView.validateStation(" "));
     }
 }

@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import subway.model.station.StationRepository;
 import subway.utils.Utils;
 
 public class InputView {
@@ -9,6 +10,7 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String MAIN_SCREEN_SELECT_REGEX = "^[1234qQ]$";
     private static final String STATION_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
+    private static final String STATION_REGEX = "^.{2,}$";
 
     public static String requestMainScreenSelect() {
         OutputView.printMainScreen();
@@ -58,8 +60,26 @@ public class InputView {
 
     public static String requestRegisterStation() {
         OutputView.printRequestRegisterStation();
-        return scanner.nextLine();
+        try {
+            return validateStation(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterStation();
+        }
     }
+
+    static String validateStation(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!Pattern.matches(STATION_REGEX, input) || isExistStation(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
+    }
+
+    private static boolean isExistStation(String stationName) {
+        return StationRepository.isExist(stationName);
+    }
+
 
     public static String requestDeleteStation() {
         OutputView.printRequestDeleteStation();

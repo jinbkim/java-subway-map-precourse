@@ -1,11 +1,13 @@
 package subway.model.station;
 
+import subway.utils.Utils;
+
 public class Station {
 
     private String name;
 
     public Station(String name) {
-        this.name = name;
+        this.name = Utils.deleteAllSpace(name);
     }
 
     public String getName() {

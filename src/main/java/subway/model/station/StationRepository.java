@@ -17,4 +17,8 @@ public class StationRepository {
     public static List<Station> get() {
         return stations.get();
     }
+
+    public static boolean isExist(String stationName) {
+        return stations.isExist(stationName);
+    }
 }

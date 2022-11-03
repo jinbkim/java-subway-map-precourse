@@ -48,11 +48,12 @@ public class OutputView {
     }
 
     public static final void printErrorMessage(String message) {
-        System.out.print(String.format(ERROR_MESSAGE_FORM, message));
+        System.out.println(String.format(ERROR_MESSAGE_FORM, message));
     }
 
     public static void printWrongInput() {
-        System.out.println(WRONG_INPUT);
+        System.out.println();
+        printErrorMessage(WRONG_INPUT);
     }
 
     public static void printMainScreen() {
