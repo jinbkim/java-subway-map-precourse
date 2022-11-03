@@ -97,18 +97,29 @@ class InputViewTest {
 
     @Test
     void 역관리_역등록_예외처리() {
-        Assertions.assertThatCode(() -> InputView.validateStation("  a b  "))
+        Assertions.assertThatCode(() -> InputView.validateRegisterStation("  a b  "))
             .doesNotThrowAnyException();
-        Assertions.assertThatCode(() -> InputView.validateStation("  충 정 로 역  "))
+        Assertions.assertThatCode(() -> InputView.validateRegisterStation("  충 정 로 역  "))
             .doesNotThrowAnyException();
 
-        StationRepository.add(new Station("충정로역"));
-        Assertions.assertThatThrownBy(() -> InputView.validateStation(" 술 "));
-        Assertions.assertThatThrownBy(() -> InputView.validateStation("술"));
-        Assertions.assertThatThrownBy(() -> InputView.validateStation(" 충  정  로  역 "));
-        Assertions.assertThatThrownBy(() -> InputView.validateStation("충정로역"));
-        Assertions.assertThatThrownBy(() -> InputView.validateStation(""));
-        Assertions.assertThatThrownBy(() -> InputView.validateStation(" "));
+        StationRepository.add(new Station(" 충 정 로 역 "));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterStation(" 술 "));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterStation("술"));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterStation(" 충  정  로  역 "));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterStation("충정로역"));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterStation(""));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterStation(" "));
     }
 
+    @Test
+    void 역관리_역삭제_예외처리() {
+        StationRepository.add(new Station(" 충 정 로 역 "));
+
+        Assertions.assertThatCode(() -> InputView.validateDeleteStation("  충 정 로 역  "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateDeleteStation("충정로역"))
+            .doesNotThrowAnyException();
+
+        Assertions.assertThatThrownBy(() -> InputView.validateDeleteStation("아현역"));
+    }
 }

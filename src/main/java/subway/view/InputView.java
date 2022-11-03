@@ -90,14 +90,14 @@ public class InputView {
     public static String requestRegisterStation() {
         OutputView.printRequestRegisterStation();
         try {
-            return validateStation(scanner.nextLine());
+            return validateRegisterStation(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             OutputView.printWrongInput();
             return requestRegisterStation();
         }
     }
 
-    static String validateStation(String input) {
+    static String validateRegisterStation(String input) {
         input = Utils.deleteAllSpace(input);
         if (!Pattern.matches(STATION_REGEX, input) || isExistStation(input)) {
             throw new IllegalArgumentException();
@@ -111,7 +111,20 @@ public class InputView {
 
     public static String requestDeleteStation() {
         OutputView.printRequestDeleteStation();
-        return scanner.nextLine();
+        try {
+            return validateDeleteStation(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestDeleteStation();
+        }
+    }
+
+    static String validateDeleteStation(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!StationRepository.isExist(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestRegisterLine() {
