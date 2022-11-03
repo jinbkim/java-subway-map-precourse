@@ -45,4 +45,14 @@ public class InputView {
         OutputView.printRequestLineDelete();
         return scanner.nextLine();
     }
+
+    public static String requestLine() {
+        OutputView.printRequestLine();
+        return scanner.nextLine();
+    }
+
+    public static String requestDeleteSectionLine() {
+        OutputView.printRequestDeleteSectionLine();
+        return scanner.nextLine();
+    }
 }
