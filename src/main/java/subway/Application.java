@@ -1,11 +1,11 @@
 package subway;
 
-import subway.controller.SubwayController;
+import subway.controller.SubwayMapController;
 
 public class Application {
 
     public static void main(String[] args) {
-        SubwayController subwayController = new SubwayController();
+        SubwayMapController subwayController = new SubwayMapController();
         subwayController.run();
     }
 }
