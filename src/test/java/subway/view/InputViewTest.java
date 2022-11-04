@@ -154,4 +154,16 @@ class InputViewTest {
             .doesNotThrowAnyException();
     }
 
+    @Test
+    void 노선관리_노선등록_역이름_예외처리() {
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterLineFirstStation(" 충 정 로 역 "));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterLineFirstStation("충정로역"));
+
+        StationRepository.add(new Station(" 충 정 로 역 "));
+        Assertions.assertThatCode(() -> InputView.validateRegisterLineFirstStation("충정로역"))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateRegisterLineFirstStation("  충 정 로 역  "))
+            .doesNotThrowAnyException();
+    }
+
 }

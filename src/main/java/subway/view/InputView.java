@@ -169,23 +169,31 @@ public class InputView {
         return input;
     }
 
-    public static String requestLine() {
-        OutputView.printRequestLine();
-        return scanner.nextLine();
-    }
-
-    public static String requestDeleteSectionLine() {
-        OutputView.printRequestDeleteSectionLine();
-        return scanner.nextLine();
-    }
-
     public static String requestRegisterLineFirstStation() {
         OutputView.printRequestRegisterLineFirstStation();
-        return scanner.nextLine();
+        try {
+            return validateRegisterLineFirstStation(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterLineFirstStation();
+        }
+    }
+
+    static String validateRegisterLineFirstStation(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!StationRepository.isExist(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestRegisterLineLastStation() {
         OutputView.printRequestRegisterLineLastStation();
+        return scanner.nextLine();
+    }
+
+    public static String requestLine() {
+        OutputView.printRequestLine();
         return scanner.nextLine();
     }
 
@@ -197,6 +205,11 @@ public class InputView {
     public static int requestOrder() {
         OutputView.printRequestOrder();
         return Integer.parseInt(scanner.nextLine());
+    }
+
+    public static String requestDeleteSectionLine() {
+        OutputView.printRequestDeleteSectionLine();
+        return scanner.nextLine();
     }
 
     public static String requestDeleteSectionStation() {
