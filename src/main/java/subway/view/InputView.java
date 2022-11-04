@@ -187,9 +187,23 @@ public class InputView {
         return input;
     }
 
-    public static String requestRegisterLineLastStation() {
+    public static String requestRegisterLineLastStation(String firstStation) {
         OutputView.printRequestRegisterLineLastStation();
-        return scanner.nextLine();
+        try {
+            return validateRegisterLineLastStation(scanner.nextLine(), firstStation);
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterLineLastStation(firstStation);
+        }
+    }
+
+    static String validateRegisterLineLastStation(String input, String firstStation) {
+        input = Utils.deleteAllSpace(input);
+        firstStation = Utils.deleteAllSpace(firstStation);
+        if (input.equals(firstStation) || !StationRepository.isExist(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestLine() {

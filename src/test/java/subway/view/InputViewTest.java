@@ -155,7 +155,7 @@ class InputViewTest {
     }
 
     @Test
-    void 노선관리_노선등록_역이름_예외처리() {
+    void 노선관리_노선등록_상행종점역_예외처리() {
         Assertions.assertThatThrownBy(() -> InputView.validateRegisterLineFirstStation(" 충 정 로 역 "));
         Assertions.assertThatThrownBy(() -> InputView.validateRegisterLineFirstStation("충정로역"));
 
@@ -164,6 +164,21 @@ class InputViewTest {
             .doesNotThrowAnyException();
         Assertions.assertThatCode(() -> InputView.validateRegisterLineFirstStation("  충 정 로 역  "))
             .doesNotThrowAnyException();
+    }
+
+    @Test
+    void 노선관리_노선등록_하행종점역_예외처리() {
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterLineLastStation(" 충 정 로 역 ", " 아 현 역 "));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterLineLastStation("충정로역", " 아 현 역 "));
+
+        StationRepository.add(new Station(" 충 정 로 역 "));
+        Assertions.assertThatCode(() -> InputView.validateRegisterLineLastStation("충정로역", " 아 현 역 "))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateRegisterLineLastStation("  충 정 로 역  ", " 아 현 역 "))
+            .doesNotThrowAnyException();
+
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterLineLastStation(" 아 현 역 ", " 아 현 역 "));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterLineLastStation("아현역", " 아 현 역 "));
     }
 
 }

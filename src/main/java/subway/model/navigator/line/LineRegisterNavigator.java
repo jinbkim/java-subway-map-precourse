@@ -14,7 +14,7 @@ public class LineRegisterNavigator implements Navigator {
         MainScreenNavigator mainScreenNavigator = new MainScreenNavigator();
         String registerLine = InputView.requestRegisterLine();
         String firstStation = InputView.requestRegisterLineFirstStation();
-        String lastStation = InputView.requestRegisterLineLastStation();
+        String lastStation = InputView.requestRegisterLineLastStation(firstStation);
 
         LineRepository.add(new Line(registerLine, firstStation, lastStation));
         OutputView.printRegisterLineComplete();
