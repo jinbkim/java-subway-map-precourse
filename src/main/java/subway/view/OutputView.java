@@ -125,7 +125,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printRequestLine() {
+    public static void printRequestRegisterSectionLine() {
         printMessage(REQUEST_LINE);
     }
 
@@ -163,12 +163,12 @@ public class OutputView {
         System.out.println(DELETE_LINE_COMPLETE);
     }
 
-    public static void printRequestStation() {
+    public static void printRequestRegisterSectionStation() {
         System.out.println();
         printMessage(REQUEST_STATION);
     }
 
-    public static void printRequestOrder() {
+    public static void printRequestRegisterSectionOrder() {
         System.out.println();
         printMessage(REQUEST_ORDER);
     }

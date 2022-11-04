@@ -9,11 +9,12 @@ import subway.utils.Utils;
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
+    private static final int ONE = 1;
     private static final String MAIN_SCREEN_SELECT_REGEX = "^[1234qQ]$";
     private static final String STATION_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
     private static final String LINE_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
     private static final String SECTION_MANAGE_SCREEN_SELECT_REGEX = "^[12bB]$";
-
+    private static final String ONLY_NUMBER_REGEX = "^[0-9]*$";
     private static final String STATION_REGEX = "^.{2,}$";
     private static final String LINE_REGEX = "^.{2,}$";
 
@@ -114,14 +115,14 @@ public class InputView {
     public static String requestDeleteStation() {
         OutputView.printRequestDeleteStation();
         try {
-            return validateDeleteStation(scanner.nextLine());
+            return validateIsExistStation(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             OutputView.printWrongInput();
             return requestDeleteStation();
         }
     }
 
-    static String validateDeleteStation(String input) {
+    static String validateIsExistStation(String input) {
         input = Utils.deleteAllSpace(input);
         if (!StationRepository.isExist(input)) {
             throw new IllegalArgumentException();
@@ -154,14 +155,14 @@ public class InputView {
     public static String requestDeleteLine() {
         OutputView.printRequestLineDelete();
         try {
-            return validateDeleteLine(scanner.nextLine());
+            return validateIsExistLine(scanner.nextLine());
         } catch (IllegalArgumentException e) {
             OutputView.printWrongInput();
             return requestDeleteLine();
         }
     }
 
-    static String validateDeleteLine(String input) {
+    static String validateIsExistLine(String input) {
         input = Utils.deleteAllSpace(input);
         if (!LineRepository.isExist(input)) {
             throw new IllegalArgumentException();
@@ -206,19 +207,56 @@ public class InputView {
         return input;
     }
 
-    public static String requestLine() {
-        OutputView.printRequestLine();
-        return scanner.nextLine();
+    public static String requestRegisterSectionLine() {
+        OutputView.printRequestRegisterSectionLine();
+        try {
+            return validateIsExistLine(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterSectionLine();
+        }
     }
 
-    public static String requestStation() {
-        OutputView.printRequestStation();
-        return scanner.nextLine();
+    public static String requestRegisterSectionStation() {
+        OutputView.printRequestRegisterSectionStation();
+        try {
+            return validateIsExistStation(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterSectionStation();
+        }
     }
 
-    public static int requestOrder() {
-        OutputView.printRequestOrder();
-        return Integer.parseInt(scanner.nextLine());
+    public static int requestRegisterSectionOrder(String lineName) {
+        OutputView.printRequestRegisterSectionOrder();
+        try {
+            return validateRegisterSectionOrder(scanner.nextLine(), lineName);
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterSectionOrder(lineName);
+        }
+    }
+
+    static int validateRegisterSectionOrder(String input, String lineName) {
+        input = Utils.deleteAllSpace(input);
+        lineName = Utils.deleteAllSpace(lineName);
+        if (!Pattern.matches(ONLY_NUMBER_REGEX, input)) {
+            throw new IllegalArgumentException();
+        }
+        int order = Integer.parseInt(input) - ONE;
+
+        if (isInvalidSectionStationOrderRange(lineName, order)) {
+            throw new IllegalArgumentException();
+        }
+        return order;
+    }
+
+    private static boolean isInvalidSectionStationOrderRange(String lineName, int order) {
+        return order > LineRepository.getLines()
+            .findLineByName(lineName)
+            .getStations()
+            .get()
+            .size();
     }
 
     public static String requestDeleteSectionLine() {
@@ -230,6 +268,4 @@ public class InputView {
         OutputView.printRequestDeleteSectionStation();
         return scanner.nextLine();
     }
-
-
 }

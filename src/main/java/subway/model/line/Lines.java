@@ -35,7 +35,7 @@ public class Lines {
         line.deleteStation(stationName);
     }
 
-    private Line findLineByName(String lineName) {
+    public Line findLineByName(String lineName) {
         return lines.stream()
             .filter(l -> l.isSameName(lineName))
             .findFirst()

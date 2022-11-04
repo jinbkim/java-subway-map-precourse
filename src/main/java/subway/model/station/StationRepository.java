@@ -5,7 +5,7 @@ import subway.model.line.LineRepository;
 
 public class StationRepository {
 
-    private static final Stations stations = new Stations();
+    private static Stations stations = new Stations();
 
     public static void add(Station station) {
         stations.add(station);
@@ -22,5 +22,9 @@ public class StationRepository {
 
     public static boolean isExist(String stationName) {
         return stations.isExist(stationName);
+    }
+
+    public static void clear() {
+        stations = new Stations();
     }
 }

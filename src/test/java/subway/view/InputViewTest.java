@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Arrays;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import subway.model.line.Line;
 import subway.model.line.LineRepository;
@@ -9,6 +10,12 @@ import subway.model.station.Station;
 import subway.model.station.StationRepository;
 
 class InputViewTest {
+
+    @BeforeEach
+    void setUp() {
+        StationRepository.clear();
+        LineRepository.clear();
+    }
 
     @Test
     void 메인화면_예외처리() {
@@ -118,12 +125,12 @@ class InputViewTest {
     void 역관리_역삭제_예외처리() {
         StationRepository.add(new Station(" 충 정 로 역 "));
 
-        Assertions.assertThatCode(() -> InputView.validateDeleteStation("  충 정 로 역  "))
+        Assertions.assertThatCode(() -> InputView.validateIsExistStation("  충 정 로 역  "))
             .doesNotThrowAnyException();
-        Assertions.assertThatCode(() -> InputView.validateDeleteStation("충정로역"))
+        Assertions.assertThatCode(() -> InputView.validateIsExistStation("충정로역"))
             .doesNotThrowAnyException();
 
-        Assertions.assertThatThrownBy(() -> InputView.validateDeleteStation("아현역"));
+        Assertions.assertThatThrownBy(() -> InputView.validateIsExistStation("아현역"));
     }
 
     @Test
@@ -144,13 +151,13 @@ class InputViewTest {
 
     @Test
     void 노선관리_노선삭제_예외처리() {
-        Assertions.assertThatThrownBy(() -> InputView.validateDeleteLine(" 9 호 선 "));
-        Assertions.assertThatThrownBy(() -> InputView.validateDeleteLine("9호선"));
+        Assertions.assertThatThrownBy(() -> InputView.validateIsExistLine(" 9 호 선 "));
+        Assertions.assertThatThrownBy(() -> InputView.validateIsExistLine("9호선"));
 
         LineRepository.add(new Line(" 9 호 선 ", Arrays.asList("아무나역")));
-        Assertions.assertThatCode(() -> InputView.validateDeleteLine("9호선"))
+        Assertions.assertThatCode(() -> InputView.validateIsExistLine("9호선"))
             .doesNotThrowAnyException();
-        Assertions.assertThatCode(() -> InputView.validateDeleteLine("  9 호 선  "))
+        Assertions.assertThatCode(() -> InputView.validateIsExistLine("  9 호 선  "))
             .doesNotThrowAnyException();
     }
 
@@ -179,6 +186,17 @@ class InputViewTest {
 
         Assertions.assertThatThrownBy(() -> InputView.validateRegisterLineLastStation(" 아 현 역 ", " 아 현 역 "));
         Assertions.assertThatThrownBy(() -> InputView.validateRegisterLineLastStation("아현역", " 아 현 역 "));
+    }
+
+    @Test
+    void 구간관리_구간등록_예외처리() {
+
+        LineRepository.add(new Line(" 9 호 선 ", Arrays.asList("첫번째역", "두번째역")));
+        Assertions.assertThatCode(() -> InputView.validateRegisterSectionOrder(" 3 ", "9호선"))
+            .doesNotThrowAnyException();
+
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterSectionOrder("넷", "9호선"));
+        Assertions.assertThatThrownBy(() -> InputView.validateRegisterSectionOrder("5", "9호선"));
     }
 
 }

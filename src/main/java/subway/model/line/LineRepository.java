@@ -4,7 +4,7 @@ import java.util.List;
 
 public class LineRepository {
 
-    private static final Lines lines = new Lines();
+    private static Lines lines = new Lines();
 
     public static void add(Line line) {
         lines.add(line);
@@ -34,4 +34,12 @@ public class LineRepository {
         return lines.get();
     }
 
+    public static Lines getLines() {
+        return lines;
+    }
+
+
+    public static void clear() {
+        lines = new Lines();
+    }
 }
