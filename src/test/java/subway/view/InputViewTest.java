@@ -127,7 +127,7 @@ class InputViewTest {
     }
 
     @Test
-    void 노선관리_노선등록_예외처리() {
+    void 노선관리_노선등록_노선이름_예외처리() {
         Assertions.assertThatCode(() -> InputView.validateRegisterLine("9호선"))
             .doesNotThrowAnyException();
         Assertions.assertThatCode(() -> InputView.validateRegisterLine("  9 호 선  "))
@@ -141,4 +141,17 @@ class InputViewTest {
         Assertions.assertThatThrownBy(() -> InputView.validateRegisterLine(""));
         Assertions.assertThatThrownBy(() -> InputView.validateRegisterLine(" "));
     }
+
+    @Test
+    void 노선관리_노선삭제_예외처리() {
+        Assertions.assertThatThrownBy(() -> InputView.validateDeleteLine(" 9 호 선 "));
+        Assertions.assertThatThrownBy(() -> InputView.validateDeleteLine("9호선"));
+
+        LineRepository.add(new Line(" 9 호 선 ", Arrays.asList("아무나역")));
+        Assertions.assertThatCode(() -> InputView.validateDeleteLine("9호선"))
+            .doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> InputView.validateDeleteLine("  9 호 선  "))
+            .doesNotThrowAnyException();
+    }
+
 }

@@ -153,7 +153,20 @@ public class InputView {
 
     public static String requestDeleteLine() {
         OutputView.printRequestLineDelete();
-        return scanner.nextLine();
+        try {
+            return validateDeleteLine(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestDeleteLine();
+        }
+    }
+
+    static String validateDeleteLine(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!LineRepository.isExist(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestLine() {
