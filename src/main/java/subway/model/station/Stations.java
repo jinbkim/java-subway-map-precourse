@@ -43,6 +43,10 @@ public class Stations {
             .anyMatch(station -> station.isSameName(stationName));
     }
 
+    public int findSize() {
+        return stations.size();
+    }
+
     public List<Station> get() {
         return stations;
     }

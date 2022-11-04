@@ -199,4 +199,14 @@ class InputViewTest {
         Assertions.assertThatThrownBy(() -> InputView.validateRegisterSectionOrder("5", "9호선"));
     }
 
+    @Test
+    void 구간관리_구간삭제_예외처리() {
+        LineRepository.add(new Line(" 9 호 선 ", Arrays.asList("첫번째역", "두번째역", "세번째역")));
+        Assertions.assertThatCode(() -> InputView.validateDeleteSectionLine(" 9 호 선 "))
+            .doesNotThrowAnyException();
+
+        LineRepository.add(new Line(" 8 호 선 ", Arrays.asList("첫번째역", "두번째역")));
+        Assertions.assertThatThrownBy(() -> InputView.validateDeleteSectionLine("7호선"));
+        Assertions.assertThatThrownBy(() -> InputView.validateDeleteSectionLine("8호선"));
+    }
 }

@@ -34,6 +34,10 @@ public class Line {
         stations.delete(stationName);
     }
 
+    public int findStationsSize() {
+        return stations.findSize();
+    }
+
     public String getName() {
         return name;
     }
@@ -41,5 +45,4 @@ public class Line {
     public Stations getStations() {
         return stations;
     }
-    // 추가 기능 구현
 }

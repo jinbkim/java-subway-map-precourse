@@ -10,6 +10,7 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static final int ONE = 1;
+    private static final int TWO = 2;
     private static final String MAIN_SCREEN_SELECT_REGEX = "^[1234qQ]$";
     private static final String STATION_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
     private static final String LINE_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
@@ -252,20 +253,41 @@ public class InputView {
     }
 
     private static boolean isInvalidSectionStationOrderRange(String lineName, int order) {
-        return order > LineRepository.getLines()
-            .findLineByName(lineName)
-            .getStations()
-            .get()
-            .size();
+        return order > LineRepository.findLineByName(lineName)
+            .findStationsSize();
     }
+
 
     public static String requestDeleteSectionLine() {
         OutputView.printRequestDeleteSectionLine();
-        return scanner.nextLine();
+        try {
+            return validateDeleteSectionLine(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestDeleteSectionLine();
+        }
+    }
+
+    static String validateDeleteSectionLine(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!LineRepository.isExist(input) || isInvalidDeleteSectionLineStationsSize(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
+    }
+
+    private static boolean isInvalidDeleteSectionLineStationsSize(String lineName) {
+        return LineRepository.findLineByName(lineName)
+            .findStationsSize() <= TWO;
     }
 
     public static String requestDeleteSectionStation() {
         OutputView.printRequestDeleteSectionStation();
-        return scanner.nextLine();
+        try {
+            return validateIsExistStation(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestDeleteSectionStation();
+        }
     }
 }

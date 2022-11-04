@@ -34,12 +34,12 @@ public class LineRepository {
         return lines.get();
     }
 
-    public static Lines getLines() {
-        return lines;
-    }
-
-
     public static void clear() {
         lines = new Lines();
     }
+
+    public static Line findLineByName(String lineName) {
+        return lines.findLineByName(lineName);
+    }
+
 }
