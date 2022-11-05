@@ -1,5 +1,6 @@
 package subway.repository;
 
+import java.util.List;
 import subway.domain.Line;
 import subway.domain.Lines;
 
@@ -17,5 +18,9 @@ public class LineRepository {
             .filter(line -> line.isSameName(lineName))
             .findAny()
             .orElse(null);
+    }
+
+    public static List<Line> get() {
+        return lines.get();
     }
 }

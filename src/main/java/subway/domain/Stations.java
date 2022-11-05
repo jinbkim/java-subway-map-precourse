@@ -10,4 +10,8 @@ public class Stations {
     public void add(Station station) {
         stations.add(station);
     }
+
+    public List<Station> get() {
+        return stations;
+    }
 }
