@@ -11,7 +11,7 @@ public class SectionRegisterNavigator implements Navigator {
     public void run() {
         Navigator mainScreenNavigator = new MainScreenNavigator();
         String line = InputView.requestRegisterSectionLine();
-        String station = InputView.requestRegisterSectionStation();
+        String station = InputView.requestRegisterSectionStation(line);
         int order = InputView.requestRegisterSectionOrder(line);
 
         LineRepository.addSection(line, station, order);

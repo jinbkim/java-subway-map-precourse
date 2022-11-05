@@ -7,8 +7,6 @@ import subway.utils.Utils;
 
 public class Line {
 
-    private static final int ONE = 1;
-
     private String name;
     private Stations stations;
 
@@ -27,7 +25,7 @@ public class Line {
     }
 
     public void addStation(String stationName, int order) {
-        stations.add(new Station(stationName), order - ONE);
+        stations.add(new Station(stationName), order);
     }
 
     public void deleteStation(String stationName) {
@@ -45,4 +43,9 @@ public class Line {
     public Stations getStations() {
         return stations;
     }
+
+    public boolean hasStation(String stationName) {
+        return stations.isExist(stationName);
+    }
+
 }

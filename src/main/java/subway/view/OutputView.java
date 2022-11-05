@@ -78,6 +78,7 @@ public class OutputView {
     }
 
     public static void printSectionManageScreen() {
+        System.out.println();
         printMessage(SECTION_MANAGE_SCREEN);
         printMessage(SELECT_FUNCTION);
     }
@@ -104,7 +105,6 @@ public class OutputView {
         printMessage(STATION_LIST);
         StationRepository.get()
             .forEach(station -> System.out.print(stationToString(station)));
-        System.out.println();
     }
 
     public static void printRequestLineRegister() {
@@ -122,7 +122,6 @@ public class OutputView {
         printMessage(LINE_LIST);
         LineRepository.get()
             .forEach(line -> printInfoMessage(line.getName()));
-        System.out.println();
     }
 
     public static void printRequestRegisterSectionLine() {

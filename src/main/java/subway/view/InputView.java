@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import subway.model.line.Line;
 import subway.model.line.LineRepository;
 import subway.model.station.StationRepository;
 import subway.utils.Utils;
@@ -218,14 +219,24 @@ public class InputView {
         }
     }
 
-    public static String requestRegisterSectionStation() {
+    public static String requestRegisterSectionStation(String lineName) {
         OutputView.printRequestRegisterSectionStation();
         try {
-            return validateIsExistStation(scanner.nextLine());
+            return validateRegisterSectionStation(scanner.nextLine(), lineName);
         } catch (IllegalArgumentException e) {
             OutputView.printWrongInput();
-            return requestRegisterSectionStation();
+            return requestRegisterSectionStation(lineName);
         }
+    }
+
+    public static String validateRegisterSectionStation(String station, String lineName) {
+        Line line = LineRepository.findLineByName(lineName);
+
+        station = Utils.deleteAllSpace(station);
+        if (line.hasStation(station) || !StationRepository.isExist(station)) {
+            throw new IllegalArgumentException();
+        }
+        return validateIsExistStation(station);
     }
 
     public static int requestRegisterSectionOrder(String lineName) {
