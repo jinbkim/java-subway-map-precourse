@@ -49,7 +49,7 @@ public class OutputView {
     }
 
     public static final void printErrorMessage(String message) {
-        System.out.println(String.format(ERROR_MESSAGE_FORM, message));
+        System.out.print(String.format(ERROR_MESSAGE_FORM, message));
     }
 
     public static void printWrongInput() {

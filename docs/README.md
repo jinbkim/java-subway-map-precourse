@@ -116,7 +116,7 @@
 ## 프로그래밍 요구사항 - Station, Line
 
 - [ ] 각 클래스의 기본 생성자를 추가할 수 없음
-- [ ] 인스턴스 변수의 name의 접근 제어자는 private
+- [ ] 인스턴스 변수 name의 접근 제어자는 private
 - [ ] setter 메소드 구현하지 않기
 
 ## 프로그래밍 요구사항 - StationRepository, LineRepository

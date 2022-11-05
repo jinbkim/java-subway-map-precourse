@@ -11,7 +11,8 @@ public class MainScreenNavigationFactory {
     private static final String TWO = "2";
     private static final String THREE = "3";
     private static final String FOUR = "4";
-    private static final String QUIT = "Q";
+    private static final String UPPER_QUIT = "Q";
+    private static final String LOWER_QUIT = "q";
 
     private static final Map<String, Supplier<Navigator>> navigatorRecipe = new HashMap<>();
 
@@ -20,7 +21,8 @@ public class MainScreenNavigationFactory {
         navigatorRecipe.put(TWO, LineManageNavigator::new);
         navigatorRecipe.put(THREE, SectionManageNavigator::new);
         navigatorRecipe.put(FOUR, MapPrintNavigator::new);
-        navigatorRecipe.put(QUIT, EndNavigator::new);
+        navigatorRecipe.put(UPPER_QUIT, EndNavigator::new);
+        navigatorRecipe.put(LOWER_QUIT, EndNavigator::new);
     }
 
     public static Navigator of(String select) {
