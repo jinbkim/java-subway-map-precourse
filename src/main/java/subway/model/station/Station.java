@@ -4,7 +4,7 @@ import subway.utils.Utils;
 
 public class Station {
 
-    private String name;
+    private final String name;
 
     public Station(String name) {
         this.name = Utils.deleteAllSpace(name);
@@ -16,15 +16,5 @@ public class Station {
 
     public boolean isSameName(String name) {
         return this.name.equals(name);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object station) {
-        return isSameName(((Station) station).name);
     }
 }

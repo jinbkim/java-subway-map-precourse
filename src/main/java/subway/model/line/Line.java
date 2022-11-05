@@ -7,8 +7,8 @@ import subway.utils.Utils;
 
 public class Line {
 
-    private String name;
-    private Stations stations;
+    private final String name;
+    private final Stations stations;
 
     public Line(String name, List<String> stations) {
         this.name = Utils.deleteAllSpace(name);

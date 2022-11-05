@@ -29,7 +29,7 @@ public class Stations {
     }
 
     public void add(Station station, int order) {
-        if (!stations.contains(station)) {
+        if (!isExist(station.getName())) {
             stations.add(order, station);
         }
     }

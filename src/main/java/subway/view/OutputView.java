@@ -40,16 +40,16 @@ public class OutputView {
     private static final String DELETE_SECTION_COMPLETE = "구간이 삭제되었습니다.";
     private static final String WRONG_INPUT = "잘못된 입력값 입니다.";
 
-    public static final void printInfoMessage(String message) {
-        System.out.print(String.format(INFO_MESSAGE_FORM, message));
+    public static void printInfoMessage(String message) {
+        System.out.printf(INFO_MESSAGE_FORM, message);
     }
 
-    public static final void printMessage(String message) {
-        System.out.print(String.format(MESSAGE_FROM, message));
+    public static void printMessage(String message) {
+        System.out.printf(MESSAGE_FROM, message);
     }
 
-    public static final void printErrorMessage(String message) {
-        System.out.print(String.format(ERROR_MESSAGE_FORM, message));
+    public static void printErrorMessage(String message) {
+        System.out.printf(ERROR_MESSAGE_FORM, message);
     }
 
     public static void printWrongInput() {
