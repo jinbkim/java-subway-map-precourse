@@ -14,4 +14,9 @@ public class Stations {
     public List<Station> get() {
         return stations;
     }
+
+    public boolean isExist(String stationName) {
+        return stations.stream()
+            .anyMatch(station -> station.isSameName(stationName));
+    }
 }

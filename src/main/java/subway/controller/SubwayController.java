@@ -8,5 +8,6 @@ public class SubwayController {
     public static void run() {
         DummyData.insert();
         OutputView.printSubwayMap();
+        OutputView.printStationList();
     }
 }
