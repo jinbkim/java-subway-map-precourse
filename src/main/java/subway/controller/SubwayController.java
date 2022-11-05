@@ -1,14 +1,16 @@
 package subway.controller;
 
 import subway.domain.DummyData;
-import subway.view.OutputView;
+import subway.service.MainScreenService;
 
 public class SubwayController {
 
     public static void run() {
         DummyData.insert();
-        OutputView.printSubwayMap();
-        OutputView.printStationList();
-        OutputView.printLineList();
+        MainScreenService.run();
+
+        //        OutputView.printSubwayMap();
+        //        OutputView.printStationList();
+        //        OutputView.printLineList();
     }
 }
