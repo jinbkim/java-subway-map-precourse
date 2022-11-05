@@ -3,6 +3,7 @@ package subway.view;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.Stations;
+import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 import subway.repository.SubwayMapRepository;
 
@@ -15,6 +16,7 @@ public class OutputView {
     private static final String ERROR_MESSAGE_FORM = "[ERROR] %s\n";
     private static final String SUBWAY_MAP = "지하철 노선도";
     private static final String STATION_LIST = "역 목록";
+    private static final String LINE_LIST = "노선 목록";
 
     public static void printMessage(String message) {
         System.out.printf(MESSAGE_FROM, message);
@@ -56,5 +58,12 @@ public class OutputView {
         printMessage(STATION_LIST);
         StationRepository.get()
             .forEach(OutputView::printStation);
+    }
+
+    public static void printLineList() {
+        System.out.println();
+        printMessage(LINE_LIST);
+        LineRepository.get()
+            .forEach(line -> printInfoMessage(line.getName()));
     }
 }
