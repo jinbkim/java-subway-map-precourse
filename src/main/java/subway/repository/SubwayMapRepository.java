@@ -1,0 +1,21 @@
+package subway.repository;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import subway.domain.Line;
+import subway.domain.Station;
+import subway.domain.Stations;
+
+public class SubwayMapRepository {
+
+    private static final Map<Line, Stations> lineAndStations = new HashMap<>();
+
+    public static void addStations(String lineName, List<String> stationsName) {
+        Line line = LineRepository.findLineByName(lineName);
+
+        Stations stations = lineAndStations.get(line);
+        stationsName.forEach(stationName -> stations.add(new Station(stationName)));
+    }
+
+}
