@@ -8,13 +8,7 @@ import subway.repository.SubwayMapRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class LineManageService {
-
-    private static final String ONE = "1";
-    private static final String TWO = "2";
-    private static final String THREE = "3";
-    private static final String UPPER_BACK = "B";
-    private static final String LOWER_BACK = "b";
+public class LineManageService extends Service{
 
     private static final Map<String, Runnable> selectAndAction = new HashMap<>();
 

@@ -6,12 +6,7 @@ import subway.repository.SubwayMapRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class SectionManageService {
-
-    private static final String ONE = "1";
-    private static final String TWO = "2";
-    private static final String UPPER_BACK = "B";
-    private static final String LOWER_BACK = "b";
+public class SectionManageService extends Service{
 
     private static final Map<String, Runnable> selectAndAction = new HashMap<>();
 
