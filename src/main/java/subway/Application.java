@@ -5,6 +5,7 @@ import subway.controller.SubwayController;
 public class Application {
 
     public static void main(String[] args) {
-        SubwayController.run();
+        SubwayController subwayController = new SubwayController();
+        subwayController.run();
     }
 }

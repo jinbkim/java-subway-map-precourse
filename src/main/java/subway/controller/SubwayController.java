@@ -5,7 +5,7 @@ import subway.service.MainScreenService;
 
 public class SubwayController {
 
-    public static void run() {
+    public void run() {
         DummyData.insert();
         MainScreenService mainScreenService = new MainScreenService();
         mainScreenService.run();
