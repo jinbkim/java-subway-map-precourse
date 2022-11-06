@@ -21,6 +21,8 @@ public class OutputView {
     private static final String STATION_MANAGE_SCREEN = "역 관리 화면\n" + "1. 역 등록\n" + "2. 역 삭제\n" + "3. 역 조회\n" + "B. 돌아가기";
     private static final String REQUEST_REGISTER_STATION = "등록할 역 이름을 입력하세요.";
     private static final String REGISTER_STATION_COMPLETE = "지하철 역이 등록되었습니다.";
+    private static final String REQUEST_DELETE_STATION = "삭제할 역 이름을 입력하세요.";
+    private static final String DELETE_STATION_COMPLETE = "지하철 역이 삭제되었습니다.";
 
     public static void printMessage(String message) {
         System.out.printf(MESSAGE_FROM, message);
@@ -93,5 +95,15 @@ public class OutputView {
     public static void printRegisterStationComplete() {
         System.out.println();
         printInfoMessage(REGISTER_STATION_COMPLETE);
+    }
+
+    public static void printRequestDeleteStation() {
+        System.out.println();
+        printMessage(REQUEST_DELETE_STATION);
+    }
+
+    public static void printDeleteStationComplete() {
+        System.out.println();
+        printInfoMessage(DELETE_STATION_COMPLETE);
     }
 }

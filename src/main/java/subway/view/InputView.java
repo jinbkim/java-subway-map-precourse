@@ -20,4 +20,9 @@ public class InputView {
         OutputView.printRequestRegisterStation();
         return SCANNER.nextLine();
     }
+
+    public static String requestDeleteStation() {
+        OutputView.printRequestDeleteStation();
+        return SCANNER.nextLine();
+    }
 }

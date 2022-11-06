@@ -13,6 +13,6 @@ public class Station {
     }
 
     public boolean isSameName(String name) {
-        return this.name == name;
+        return this.name.equals(name);
     }
 }

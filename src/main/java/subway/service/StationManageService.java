@@ -18,6 +18,7 @@ public class StationManageService {
 
     static {
         selectAndAction.put(ONE, StationManageService::register);
+        selectAndAction.put(TWO, StationManageService::delete);
     }
 
     public static void run() {
@@ -32,6 +33,14 @@ public class StationManageService {
 
         StationRepository.add(station);
         OutputView.printRegisterStationComplete();
+        MainScreenService.run();
+    }
+
+    private static void delete() {
+        String station = InputView.requestDeleteStation();
+
+        StationRepository.delete(station);
+        OutputView.printDeleteStationComplete();
         MainScreenService.run();
     }
 }

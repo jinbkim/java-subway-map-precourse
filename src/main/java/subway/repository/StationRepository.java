@@ -18,4 +18,7 @@ public class StationRepository {
         return stations.get();
     }
 
+    public static void delete(String stationName) {
+        stations.delete(stationName);
+    }
 }
