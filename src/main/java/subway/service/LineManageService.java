@@ -20,8 +20,8 @@ public class LineManageService {
 
     static {
         selectAndAction.put(ONE, LineManageService::register);
-        //        selectAndAction.put(TWO, LineManageService::delete);
-        //        selectAndAction.put(THREE, LineManageService::lookUp);
+        selectAndAction.put(TWO, LineManageService::delete);
+        selectAndAction.put(THREE, LineManageService::lookUp);
         selectAndAction.put(UPPER_BACK, MainScreenService::run);
         selectAndAction.put(LOWER_BACK, MainScreenService::run);
     }
@@ -42,5 +42,20 @@ public class LineManageService {
         SubwayMapRepository.addStations(line, List.of(firstStation, lastStation));
         OutputView.printRegisterLineComplete();
         MainScreenService.run();
+    }
+
+    private static void delete() {
+        String line = InputView.requestDeleteLine();
+
+        SubwayMapRepository.deleteLine(line);
+        LineRepository.delete(line);
+        OutputView.printDeleteLineComplete();
+        MainScreenService.run();
+    }
+
+    private static void lookUp() {
+        OutputView.printLineList();
+        MainScreenService.run();
+
     }
 }

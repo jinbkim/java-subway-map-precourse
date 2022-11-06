@@ -28,4 +28,8 @@ public class SubwayMapRepository {
         return lineAndStations;
     }
 
+    public static void deleteLine(String lineName) {
+        Line line = LineRepository.findLineByName(lineName);
+        lineAndStations.remove(line);
+    }
 }

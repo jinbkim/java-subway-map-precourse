@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lines {
 
@@ -13,5 +14,11 @@ public class Lines {
 
     public List<Line> get() {
         return lines;
+    }
+
+    public void delete(String lineName) {
+        lines = lines.stream()
+            .filter(line -> !line.isSameName(lineName))
+            .collect(Collectors.toList());
     }
 }

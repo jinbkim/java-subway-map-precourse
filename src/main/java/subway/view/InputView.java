@@ -46,4 +46,9 @@ public class InputView {
         OutputView.printRequestRegisterLineLastStation();
         return SCANNER.nextLine();
     }
+
+    public static String requestDeleteLine() {
+        OutputView.printRequestLineDelete();
+        return SCANNER.nextLine();
+    }
 }
