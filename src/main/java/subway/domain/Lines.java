@@ -21,4 +21,9 @@ public class Lines {
                 .filter(line -> !line.isSameName(lineName))
                 .collect(Collectors.toList());
     }
+
+    public boolean isExistLineName(String lineName) {
+        return lines.stream()
+                .anyMatch(line -> line.isSameName(lineName));
+    }
 }

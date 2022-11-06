@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 import subway.utis.Utils;
 
@@ -113,18 +114,61 @@ public class InputView {
 
     public static String requestRegisterLine() {
         OutputView.printRequestLineRegister();
-        return SCANNER.nextLine();
+        try {
+            return validateRegisterLine(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterLine();
+        }
+    }
+
+    static String validateRegisterLine(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!Pattern.matches(LINE_REGEX, input) || isExistLineName(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
+    }
+
+    private static boolean isExistLineName(String lineName) {
+        return LineRepository.isExistLineName(lineName);
     }
 
     public static String requestRegisterLineFirstStation() {
         OutputView.printRequestRegisterLineFirstStation();
-        return SCANNER.nextLine();
+        try {
+            return validateRegisterLineFirstStation(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterLineFirstStation();
+        }
     }
 
+    static String validateRegisterLineFirstStation(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!StationRepository.isExistStationName(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
+    }
 
-    public static String requestRegisterLineLastStation() {
+    public static String requestRegisterLineLastStation(String firstStation) {
         OutputView.printRequestRegisterLineLastStation();
-        return SCANNER.nextLine();
+        try {
+            return validateRegisterLineLastStation(SCANNER.nextLine(), firstStation);
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterLineLastStation(firstStation);
+        }
+    }
+
+    static String validateRegisterLineLastStation(String input, String firstStation) {
+        input = Utils.deleteAllSpace(input);
+        firstStation = Utils.deleteAllSpace(firstStation);
+        if (input.equals(firstStation) || !StationRepository.isExistStationName(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestDeleteLine() {

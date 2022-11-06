@@ -27,4 +27,8 @@ public class LineRepository {
     public static void delete(String lineName) {
         lines.delete(lineName);
     }
+
+    public static boolean isExistLineName(String lineName) {
+        return lines.isExistLineName(lineName);
+    }
 }

@@ -34,7 +34,7 @@ public class LineManageService extends ManageService {
     protected void register() {
         String line = InputView.requestRegisterLine();
         String firstStation = InputView.requestRegisterLineFirstStation();
-        String lastStation = InputView.requestRegisterLineLastStation();
+        String lastStation = InputView.requestRegisterLineLastStation(firstStation);
 
         LineRepository.add(line);
         SubwayMapRepository.addStations(line, List.of(firstStation, lastStation));
