@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import subway.repository.SubwayMapRepository;
 import subway.view.InputView;
+import subway.view.OutputView;
 
 public class SectionManageService {
 
@@ -16,6 +17,7 @@ public class SectionManageService {
 
     static {
         selectAndAction.put(ONE, SectionManageService::register);
+        selectAndAction.put(TWO, SectionManageService::delete);
         selectAndAction.put(UPPER_BACK, MainScreenService::run);
         selectAndAction.put(LOWER_BACK, MainScreenService::run);
     }
@@ -33,6 +35,15 @@ public class SectionManageService {
         int order = InputView.requestRegisterSectionOrder();
 
         SubwayMapRepository.addStations(line, station, order);
+        MainScreenService.run();
+    }
+
+    private static void delete() {
+        String line = InputView.requestDeleteSectionLine();
+        String station = InputView.requestDeleteSectionStation();
+
+        SubwayMapRepository.deleteSection(line, station);
+        OutputView.printDeleteSectionComplete();
         MainScreenService.run();
     }
 }

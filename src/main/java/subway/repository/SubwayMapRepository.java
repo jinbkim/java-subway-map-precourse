@@ -39,4 +39,11 @@ public class SubwayMapRepository {
 
         stations.add(new Station(stationName), order);
     }
+
+    public static void deleteSection(String lineName, String stationName) {
+        Line line = LineRepository.findLineByName(lineName);
+        Stations stations = findStationsByLine(line);
+
+        stations.delete(stationName);
+    }
 }

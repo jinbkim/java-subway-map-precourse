@@ -72,4 +72,14 @@ public class InputView {
         OutputView.printRequestRegisterSectionOrder();
         return Integer.parseInt(SCANNER.nextLine()) - ONE;
     }
+
+    public static String requestDeleteSectionLine() {
+        OutputView.printRequestDeleteSectionLine();
+        return SCANNER.nextLine();
+    }
+
+    public static String requestDeleteSectionStation() {
+        OutputView.printRequestDeleteSectionStation();
+        return SCANNER.nextLine();
+    }
 }
