@@ -15,4 +15,5 @@ public class Line {
     public boolean isSameName(String name) {
         return this.name.equals(name);
     }
+
 }

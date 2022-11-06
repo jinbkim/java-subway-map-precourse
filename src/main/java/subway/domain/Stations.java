@@ -30,4 +30,8 @@ public class Stations {
     public void add(Station station, int order) {
         stations.add(order, station);
     }
+
+    public int size() {
+        return stations.size();
+    }
 }

@@ -30,8 +30,8 @@ public class SectionManageService extends ManageService {
     @Override
     protected void register() {
         String line = InputView.requestRegisterSectionLine();
-        String station = InputView.requestRegisterSectionStation();
-        int order = InputView.requestRegisterSectionOrder();
+        String station = InputView.requestRegisterSectionStation(line);
+        int order = InputView.requestRegisterSectionOrder(line);
 
         SubwayMapRepository.addStations(line, station, order);
         OutputView.printRegisterSectionComplete();

@@ -46,4 +46,20 @@ public class SubwayMapRepository {
 
         stations.delete(stationName);
     }
+
+    public static boolean isExistSection(String lineName, String stationName) {
+        Line line = LineRepository.findLineByName(lineName);
+        Stations stations = findStationsByLine(line);
+
+        return stations.isExistStationName(stationName);
+    }
+
+
+    public static int findLineSize(String lineName) {
+        Line line = LineRepository.findLineByName(lineName);
+        Stations stations = findStationsByLine(line);
+
+        return stations.size();
+
+    }
 }

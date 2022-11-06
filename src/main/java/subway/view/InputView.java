@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
+import subway.repository.SubwayMapRepository;
 import subway.utis.Utils;
 
 public class InputView {
@@ -209,17 +210,59 @@ public class InputView {
 
     public static String requestRegisterSectionLine() {
         OutputView.printRequestRegisterSectionLine();
-        return SCANNER.nextLine();
+        try {
+            return validateIsExistLine(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterSectionLine();
+        }
     }
 
-    public static String requestRegisterSectionStation() {
+    public static String requestRegisterSectionStation(String lineName) {
         OutputView.printRequestRegisterSectionStation();
-        return SCANNER.nextLine();
+        try {
+            return validateRegisterSectionStation(SCANNER.nextLine(), lineName);
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterSectionStation(lineName);
+        }
     }
 
-    public static int requestRegisterSectionOrder() {
+    public static String validateRegisterSectionStation(String stationName, String lineName) {
+        stationName = Utils.deleteAllSpace(stationName);
+        if (SubwayMapRepository.isExistSection(lineName, stationName) || !StationRepository.isExistStationName(stationName)) {
+            throw new IllegalArgumentException();
+        }
+        return validateIsExistStation(stationName);
+    }
+
+    public static int requestRegisterSectionOrder(String lineName) {
         OutputView.printRequestRegisterSectionOrder();
-        return Integer.parseInt(SCANNER.nextLine()) - ONE;
+        try {
+            return validateRegisterSectionOrder(SCANNER.nextLine(), lineName);
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterSectionOrder(lineName);
+        }
+    }
+
+    static int validateRegisterSectionOrder(String input, String lineName) {
+        input = Utils.deleteAllSpace(input);
+        lineName = Utils.deleteAllSpace(lineName);
+        if (!Pattern.matches(ONLY_NUMBER_REGEX, input)) {
+            throw new IllegalArgumentException();
+        }
+        int order = Integer.parseInt(input) - ONE;
+
+        if (isInvalidSectionStationOrderRange(lineName, order)) {
+            throw new IllegalArgumentException();
+        }
+        return order;
+    }
+
+    private static boolean isInvalidSectionStationOrderRange(String lineName, int order) {
+        return order > SubwayMapRepository.findLineSize(lineName);
+
     }
 
     public static String requestDeleteSectionLine() {
