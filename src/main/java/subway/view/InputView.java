@@ -77,7 +77,20 @@ public class InputView {
 
     public static String requestDeleteStation() {
         OutputView.printRequestDeleteStation();
-        return SCANNER.nextLine();
+        try {
+            return validateIsExistStation(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestDeleteStation();
+        }
+    }
+
+    static String validateIsExistStation(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!StationRepository.isExistStationName(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestLineManageScreenSelect() {
