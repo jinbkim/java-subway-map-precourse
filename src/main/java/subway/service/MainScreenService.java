@@ -3,6 +3,7 @@ package subway.service;
 import java.util.HashMap;
 import java.util.Map;
 import subway.view.InputView;
+import subway.view.OutputView;
 
 public class MainScreenService {
 
@@ -17,6 +18,8 @@ public class MainScreenService {
 
     static {
         selectAndAction.put(ONE, StationManageService::run);
+        selectAndAction.put(TWO, LineManageService::run);
+        selectAndAction.put(FOUR, MainScreenService::lookUp);
     }
 
     public static void run() {
@@ -24,5 +27,10 @@ public class MainScreenService {
 
         selectAndAction.get(mainScreenSelect)
             .run();
+    }
+
+    private static void lookUp() {
+        OutputView.printSubwayMap();
+        run();
     }
 }

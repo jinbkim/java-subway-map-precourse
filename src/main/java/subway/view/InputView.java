@@ -25,4 +25,25 @@ public class InputView {
         OutputView.printRequestDeleteStation();
         return SCANNER.nextLine();
     }
+
+    public static String requestLineManageScreenSelect() {
+        OutputView.printLineManageScreen();
+        return SCANNER.nextLine();
+    }
+
+    public static String requestRegisterLine() {
+        OutputView.printRequestLineRegister();
+        return SCANNER.nextLine();
+    }
+
+    public static String requestRegisterLineFirstStation() {
+        OutputView.printRequestRegisterLineFirstStation();
+        return SCANNER.nextLine();
+    }
+
+
+    public static String requestRegisterLineLastStation() {
+        OutputView.printRequestRegisterLineLastStation();
+        return SCANNER.nextLine();
+    }
 }

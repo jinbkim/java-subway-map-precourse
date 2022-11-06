@@ -23,6 +23,11 @@ public class OutputView {
     private static final String REGISTER_STATION_COMPLETE = "지하철 역이 등록되었습니다.";
     private static final String REQUEST_DELETE_STATION = "삭제할 역 이름을 입력하세요.";
     private static final String DELETE_STATION_COMPLETE = "지하철 역이 삭제되었습니다.";
+    private static final String LINE_MANAGE_SCREEN = "노선 관리 화면\n" + "1. 노선 등록\n" + "2. 노선 삭제\n" + "3. 노선 조회\n" + "B. 돌아가기";
+    private static final String REQUEST_REGISTER_LINE = "등록할 노선 이름을 입력하세요.";
+    private static final String REQUEST_REGISTER_LINE_FIRST_STATION = "등록할 노선의 상행 종점역 이름을 입력하세요.";
+    private static final String REQUEST_REGISTER_LINE_LAST_STATION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
+    private static final String REGISTER_LINE_COMPLETE = "지하철 노선이 등록되었습니다.";
 
     public static void printMessage(String message) {
         System.out.printf(MESSAGE_FROM, message);
@@ -105,5 +110,32 @@ public class OutputView {
     public static void printDeleteStationComplete() {
         System.out.println();
         printInfoMessage(DELETE_STATION_COMPLETE);
+    }
+
+    public static void printLineManageScreen() {
+        System.out.println();
+        printMessage(LINE_MANAGE_SCREEN);
+        System.out.println();
+        printMessage(SELECT_FUNCTION);
+    }
+
+    public static void printRequestLineRegister() {
+        System.out.println();
+        printMessage(REQUEST_REGISTER_LINE);
+    }
+
+    public static void printRequestRegisterLineFirstStation() {
+        System.out.println();
+        printMessage(REQUEST_REGISTER_LINE_FIRST_STATION);
+    }
+
+    public static void printRequestRegisterLineLastStation() {
+        System.out.println();
+        printMessage(REQUEST_REGISTER_LINE_LAST_STATION);
+    }
+
+    public static void printRegisterLineComplete() {
+        System.out.println();
+        printInfoMessage(REGISTER_LINE_COMPLETE);
     }
 }
