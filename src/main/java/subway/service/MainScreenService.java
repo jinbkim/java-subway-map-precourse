@@ -19,6 +19,7 @@ public class MainScreenService {
     static {
         selectAndAction.put(ONE, StationManageService::run);
         selectAndAction.put(TWO, LineManageService::run);
+        selectAndAction.put(THREE, SectionManageService::run);
         selectAndAction.put(FOUR, MainScreenService::lookUp);
     }
 

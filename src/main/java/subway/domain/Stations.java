@@ -26,4 +26,8 @@ public class Stations {
             .filter(station -> !station.isSameName(stationName))
             .collect(Collectors.toList());
     }
+
+    public void add(Station station, int order) {
+        stations.add(order, station);
+    }
 }

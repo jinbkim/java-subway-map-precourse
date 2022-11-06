@@ -32,4 +32,11 @@ public class SubwayMapRepository {
         Line line = LineRepository.findLineByName(lineName);
         lineAndStations.remove(line);
     }
+
+    public static void addStations(String lineName, String stationName, int order) {
+        Line line = LineRepository.findLineByName(lineName);
+        Stations stations = findStationsByLine(line);
+
+        stations.add(new Station(stationName), order);
+    }
 }

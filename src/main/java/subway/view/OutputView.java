@@ -30,6 +30,10 @@ public class OutputView {
     private static final String REGISTER_LINE_COMPLETE = "지하철 노선이 등록되었습니다.";
     private static final String REQUEST_DELETE_LINE = "삭제할 노선 이름을 입력하세요.";
     private static final String DELETE_LINE_COMPLETE = "지하철 노선이 삭제되었습니다.";
+    private static final String SECTION_MANAGE_SCREEN = "구간 관리 화면\n" + "1. 구간 등록\n" + "2. 구간 삭제\n" + "B. 돌아가기";
+    private static final String REQUEST_LINE = "노선을 입력하세요.";
+    private static final String REQUEST_STATION = "역이름을 입력하세요.";
+    private static final String REQUEST_ORDER = "순서를 입력하세요.";
 
     public static void printMessage(String message) {
         System.out.printf(MESSAGE_FROM, message);
@@ -150,4 +154,27 @@ public class OutputView {
         System.out.println();
         System.out.println(DELETE_LINE_COMPLETE);
     }
+
+    public static void printSectionManageScreen() {
+        System.out.println();
+        printMessage(SECTION_MANAGE_SCREEN);
+        System.out.println();
+        printMessage(SELECT_FUNCTION);
+    }
+
+    public static void printRequestRegisterSectionLine() {
+        System.out.println();
+        printMessage(REQUEST_LINE);
+    }
+
+    public static void printRequestRegisterSectionStation() {
+        System.out.println();
+        printMessage(REQUEST_STATION);
+    }
+
+    public static void printRequestRegisterSectionOrder() {
+        System.out.println();
+        printMessage(REQUEST_ORDER);
+    }
+
 }

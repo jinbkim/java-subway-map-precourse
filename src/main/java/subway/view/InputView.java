@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class InputView {
 
+    private static final int ONE = 1;
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static String requestMainScreenSelect() {
@@ -50,5 +51,25 @@ public class InputView {
     public static String requestDeleteLine() {
         OutputView.printRequestLineDelete();
         return SCANNER.nextLine();
+    }
+
+    public static String requestSectionManageScreenSelect() {
+        OutputView.printSectionManageScreen();
+        return SCANNER.nextLine();
+    }
+
+    public static String requestRegisterSectionLine() {
+        OutputView.printRequestRegisterSectionLine();
+        return SCANNER.nextLine();
+    }
+
+    public static String requestRegisterSectionStation() {
+        OutputView.printRequestRegisterSectionStation();
+        return SCANNER.nextLine();
+    }
+
+    public static int requestRegisterSectionOrder() {
+        OutputView.printRequestRegisterSectionOrder();
+        return Integer.parseInt(SCANNER.nextLine()) - ONE;
     }
 }
