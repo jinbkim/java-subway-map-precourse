@@ -36,7 +36,20 @@ public class InputView {
 
     public static String requestStationManageScreenSelect() {
         OutputView.printStationManageScreen();
-        return SCANNER.nextLine();
+        try {
+            return validateStationManageScreenSelect(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestStationManageScreenSelect();
+        }
+    }
+
+    static String validateStationManageScreenSelect(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!Pattern.matches(STATION_MANAGE_SCREEN_SELECT_REGEX, input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestRegisterStation() {
