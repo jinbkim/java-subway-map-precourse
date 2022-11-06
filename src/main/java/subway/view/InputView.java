@@ -10,6 +10,7 @@ import subway.utis.Utils;
 public class InputView {
 
     private static final int ONE = 1;
+    private static final int TWO = 2;
     private static final String MAIN_SCREEN_SELECT_REGEX = "^[1234qQ]$";
     private static final String STATION_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
     private static final String LINE_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
@@ -267,11 +268,33 @@ public class InputView {
 
     public static String requestDeleteSectionLine() {
         OutputView.printRequestDeleteSectionLine();
-        return SCANNER.nextLine();
+        try {
+            return validateDeleteSectionLine(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestDeleteSectionLine();
+        }
+    }
+
+    static String validateDeleteSectionLine(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!LineRepository.isExistLineName(input) || isInvalidSectionLineSize(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
+    }
+
+    private static boolean isInvalidSectionLineSize(String lineName) {
+        return SubwayMapRepository.findLineSize(lineName) <= TWO;
     }
 
     public static String requestDeleteSectionStation() {
         OutputView.printRequestDeleteSectionStation();
-        return SCANNER.nextLine();
+        try {
+            return validateIsExistStation(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestDeleteSectionStation();
+        }
     }
 }

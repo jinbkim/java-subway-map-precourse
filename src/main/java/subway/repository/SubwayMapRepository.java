@@ -10,6 +10,7 @@ import subway.domain.Stations;
 public class SubwayMapRepository {
 
     private static final Map<Line, Stations> lineAndStations = new HashMap<>();
+    private static int ZERO = 0;
 
     public static void addStations(String lineName, List<String> stationsName) {
         Line line = LineRepository.findLineByName(lineName);
@@ -53,7 +54,6 @@ public class SubwayMapRepository {
 
         return stations.isExistStationName(stationName);
     }
-
 
     public static int findLineSize(String lineName) {
         Line line = LineRepository.findLineByName(lineName);
