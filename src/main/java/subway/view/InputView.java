@@ -191,7 +191,20 @@ public class InputView {
 
     public static String requestSectionManageScreenSelect() {
         OutputView.printSectionManageScreen();
-        return SCANNER.nextLine();
+        try {
+            return validateSectionManageScreenSelect(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestSectionManageScreenSelect();
+        }
+    }
+
+    static String validateSectionManageScreenSelect(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!Pattern.matches(SECTION_MANAGE_SCREEN_SELECT_REGEX, input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestRegisterSectionLine() {
