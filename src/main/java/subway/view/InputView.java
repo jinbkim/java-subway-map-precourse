@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import subway.repository.StationRepository;
 import subway.utis.Utils;
 
 public class InputView {
@@ -54,7 +55,24 @@ public class InputView {
 
     public static String requestRegisterStation() {
         OutputView.printRequestRegisterStation();
-        return SCANNER.nextLine();
+        try {
+            return validateRegisterStation(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestRegisterStation();
+        }
+    }
+
+    static String validateRegisterStation(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!Pattern.matches(STATION_REGEX, input) || isExistStationName(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
+    }
+
+    private static boolean isExistStationName(String stationName) {
+        return StationRepository.isExistStationName(stationName);
     }
 
     public static String requestDeleteStation() {
