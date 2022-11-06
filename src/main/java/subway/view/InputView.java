@@ -173,7 +173,20 @@ public class InputView {
 
     public static String requestDeleteLine() {
         OutputView.printRequestLineDelete();
-        return SCANNER.nextLine();
+        try {
+            return validateIsExistLine(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestDeleteLine();
+        }
+    }
+
+    static String validateIsExistLine(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!LineRepository.isExistLineName(input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestSectionManageScreenSelect() {
