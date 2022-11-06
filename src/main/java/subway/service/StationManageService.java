@@ -20,6 +20,8 @@ public class StationManageService {
         selectAndAction.put(ONE, StationManageService::register);
         selectAndAction.put(TWO, StationManageService::delete);
         selectAndAction.put(THREE, StationManageService::lookUp);
+        selectAndAction.put(UPPER_BACK, MainScreenService::run);
+        selectAndAction.put(LOWER_BACK, MainScreenService::run);
     }
 
     public static void run() {
