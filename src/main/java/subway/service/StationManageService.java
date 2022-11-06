@@ -26,7 +26,6 @@ public class StationManageService extends ManageService {
 
         selectAndAction.get(stationManageScreenSelect)
                 .run();
-        mainScreenService.run();
     }
 
     @Override
@@ -35,6 +34,7 @@ public class StationManageService extends ManageService {
 
         StationRepository.add(station);
         OutputView.printRegisterStationComplete();
+        mainScreenService.run();
     }
 
     @Override
@@ -43,5 +43,6 @@ public class StationManageService extends ManageService {
 
         StationRepository.delete(station);
         OutputView.printDeleteStationComplete();
+        mainScreenService.run();
     }
 }

@@ -25,7 +25,6 @@ public class SectionManageService extends ManageService {
 
         selectAndAction.get(sectionManageScreenSelect)
                 .run();
-        mainScreenService.run();
     }
 
     @Override
@@ -36,6 +35,7 @@ public class SectionManageService extends ManageService {
 
         SubwayMapRepository.addStations(line, station, order);
         OutputView.printRegisterSectionComplete();
+        mainScreenService.run();
     }
 
     @Override
@@ -45,5 +45,6 @@ public class SectionManageService extends ManageService {
 
         SubwayMapRepository.deleteSection(line, station);
         OutputView.printDeleteSectionComplete();
+        mainScreenService.run();
     }
 }

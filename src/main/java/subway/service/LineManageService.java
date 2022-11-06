@@ -28,7 +28,6 @@ public class LineManageService extends ManageService {
 
         selectAndAction.get(lineManageScreenSelect)
                 .run();
-        mainScreenService.run();
     }
 
     @Override
@@ -40,6 +39,7 @@ public class LineManageService extends ManageService {
         LineRepository.add(line);
         SubwayMapRepository.addStations(line, List.of(firstStation, lastStation));
         OutputView.printRegisterLineComplete();
+        mainScreenService.run();
     }
 
     @Override
@@ -49,5 +49,6 @@ public class LineManageService extends ManageService {
         SubwayMapRepository.deleteLine(line);
         LineRepository.delete(line);
         OutputView.printDeleteLineComplete();
+        mainScreenService.run();
     }
 }
