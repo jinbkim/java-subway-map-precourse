@@ -1,15 +1,37 @@
 package subway.view;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import subway.utis.Utils;
 
 public class InputView {
 
     private static final int ONE = 1;
+    private static final String MAIN_SCREEN_SELECT_REGEX = "^[1234qQ]$";
+    private static final String STATION_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
+    private static final String LINE_MANAGE_SCREEN_SELECT_REGEX = "^[123bB]$";
+    private static final String SECTION_MANAGE_SCREEN_SELECT_REGEX = "^[12bB]$";
+    private static final String ONLY_NUMBER_REGEX = "^[0-9]*$";
+    private static final String STATION_REGEX = "^.{2,}$";
+    private static final String LINE_REGEX = "^.{2,}$";
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static String requestMainScreenSelect() {
         OutputView.printMainScreen();
-        return SCANNER.nextLine();
+        try {
+            return validateMainScreenSelect(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestMainScreenSelect();
+        }
+    }
+
+    static String validateMainScreenSelect(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!Pattern.matches(MAIN_SCREEN_SELECT_REGEX, input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestStationManageScreenSelect() {
