@@ -7,10 +7,7 @@ public class SubwayController {
 
     public static void run() {
         DummyData.insert();
-        MainScreenService.run();
-
-        //        OutputView.printSubwayMap();
-        //        OutputView.printStationList();
-        //        OutputView.printLineList();
+        MainScreenService mainScreenService = new MainScreenService();
+        mainScreenService.run();
     }
 }

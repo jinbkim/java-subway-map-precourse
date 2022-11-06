@@ -6,39 +6,41 @@ import subway.repository.SubwayMapRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class SectionManageService extends Service{
+public class SectionManageService extends Service {
 
-    private static final Map<String, Runnable> selectAndAction = new HashMap<>();
+    private final Map<String, Runnable> selectAndAction = new HashMap<>();
+    private final MainScreenService mainScreenService;
 
-    static {
-        selectAndAction.put(ONE, SectionManageService::register);
-        selectAndAction.put(TWO, SectionManageService::delete);
-        selectAndAction.put(UPPER_BACK, MainScreenService::run);
-        selectAndAction.put(LOWER_BACK, MainScreenService::run);
+    public SectionManageService(MainScreenService mainScreenService) {
+        selectAndAction.put(ONE, this::register);
+        selectAndAction.put(TWO, this::delete);
+        selectAndAction.put(UPPER_BACK, mainScreenService::run);
+        selectAndAction.put(LOWER_BACK, mainScreenService::run);
+        this.mainScreenService = mainScreenService;
     }
 
-    public static void run() {
+    public void run() {
         String sectionManageScreenSelect = InputView.requestSectionManageScreenSelect();
 
         selectAndAction.get(sectionManageScreenSelect)
             .run();
     }
 
-    private static void register() {
+    private void register() {
         String line = InputView.requestRegisterSectionLine();
         String station = InputView.requestRegisterSectionStation();
         int order = InputView.requestRegisterSectionOrder();
 
         SubwayMapRepository.addStations(line, station, order);
-        MainScreenService.run();
+        mainScreenService.run();
     }
 
-    private static void delete() {
+    private void delete() {
         String line = InputView.requestDeleteSectionLine();
         String station = InputView.requestDeleteSectionStation();
 
         SubwayMapRepository.deleteSection(line, station);
         OutputView.printDeleteSectionComplete();
-        MainScreenService.run();
+        mainScreenService.run();
     }
 }

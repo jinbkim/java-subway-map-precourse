@@ -5,25 +5,29 @@ import java.util.Map;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class MainScreenService extends Service{
+public class MainScreenService extends Service {
 
-    private static final Map<String, Runnable> selectAndAction = new HashMap<>();
+    private final Map<String, Runnable> selectAndAction = new HashMap<>();
+    private StationManageService stationManageService = new StationManageService(this);
+    private LineManageService lineManageService = new LineManageService(this);
+    private SectionManageService sectionManageService = new SectionManageService(this);
 
-    static {
-        selectAndAction.put(ONE, StationManageService::run);
-        selectAndAction.put(TWO, LineManageService::run);
-        selectAndAction.put(THREE, SectionManageService::run);
-        selectAndAction.put(FOUR, MainScreenService::lookUp);
+
+    public MainScreenService() {
+        selectAndAction.put(ONE, stationManageService::run);
+        selectAndAction.put(TWO, lineManageService::run);
+        selectAndAction.put(THREE, sectionManageService::run);
+        selectAndAction.put(FOUR, this::lookUp);
     }
 
-    public static void run() {
+    public void run() {
         String mainScreenSelect = InputView.requestMainScreenSelect();
 
         selectAndAction.get(mainScreenSelect)
             .run();
     }
 
-    private static void lookUp() {
+    private void lookUp() {
         OutputView.printSubwayMap();
         run();
     }

@@ -8,26 +8,28 @@ import subway.repository.SubwayMapRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class LineManageService extends Service{
+public class LineManageService extends Service {
 
-    private static final Map<String, Runnable> selectAndAction = new HashMap<>();
+    private final Map<String, Runnable> selectAndAction = new HashMap<>();
+    private final MainScreenService mainScreenService;
 
-    static {
-        selectAndAction.put(ONE, LineManageService::register);
-        selectAndAction.put(TWO, LineManageService::delete);
-        selectAndAction.put(THREE, LineManageService::lookUp);
-        selectAndAction.put(UPPER_BACK, MainScreenService::run);
-        selectAndAction.put(LOWER_BACK, MainScreenService::run);
+    public LineManageService(MainScreenService mainScreenService) {
+        selectAndAction.put(ONE, this::register);
+        selectAndAction.put(TWO, this::delete);
+        selectAndAction.put(THREE, this::lookUp);
+        selectAndAction.put(UPPER_BACK, mainScreenService::run);
+        selectAndAction.put(LOWER_BACK, mainScreenService::run);
+        this.mainScreenService = mainScreenService;
     }
 
-    public static void run() {
+    public void run() {
         String lineManageScreenSelect = InputView.requestLineManageScreenSelect();
 
         selectAndAction.get(lineManageScreenSelect)
             .run();
     }
 
-    private static void register() {
+    private void register() {
         String line = InputView.requestRegisterLine();
         String firstStation = InputView.requestRegisterLineFirstStation();
         String lastStation = InputView.requestRegisterLineLastStation();
@@ -35,21 +37,21 @@ public class LineManageService extends Service{
         LineRepository.add(line);
         SubwayMapRepository.addStations(line, List.of(firstStation, lastStation));
         OutputView.printRegisterLineComplete();
-        MainScreenService.run();
+        mainScreenService.run();
     }
 
-    private static void delete() {
+    private void delete() {
         String line = InputView.requestDeleteLine();
 
         SubwayMapRepository.deleteLine(line);
         LineRepository.delete(line);
         OutputView.printDeleteLineComplete();
-        MainScreenService.run();
+        mainScreenService.run();
     }
 
-    private static void lookUp() {
+    private void lookUp() {
         OutputView.printLineList();
-        MainScreenService.run();
+        mainScreenService.run();
 
     }
 }

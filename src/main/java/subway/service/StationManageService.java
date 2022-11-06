@@ -6,43 +6,45 @@ import subway.repository.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class StationManageService extends Service{
+public class StationManageService extends Service {
 
-    private static final Map<String, Runnable> selectAndAction = new HashMap<>();
+    private final Map<String, Runnable> selectAndAction = new HashMap<>();
+    private final MainScreenService mainScreenService;
 
-    static {
-        selectAndAction.put(ONE, StationManageService::register);
-        selectAndAction.put(TWO, StationManageService::delete);
-        selectAndAction.put(THREE, StationManageService::lookUp);
-        selectAndAction.put(UPPER_BACK, MainScreenService::run);
-        selectAndAction.put(LOWER_BACK, MainScreenService::run);
+    public StationManageService(MainScreenService mainScreenService) {
+        selectAndAction.put(ONE, this::register);
+        selectAndAction.put(TWO, this::delete);
+        selectAndAction.put(THREE, this::lookUp);
+        selectAndAction.put(UPPER_BACK, mainScreenService::run);
+        selectAndAction.put(LOWER_BACK, mainScreenService::run);
+        this.mainScreenService = mainScreenService;
     }
 
-    public static void run() {
+    public void run() {
         String stationManageScreenSelect = InputView.requestStationManageScreenSelect();
 
         selectAndAction.get(stationManageScreenSelect)
             .run();
     }
 
-    private static void register() {
+    private void register() {
         String station = InputView.requestRegisterStation();
 
         StationRepository.add(station);
         OutputView.printRegisterStationComplete();
-        MainScreenService.run();
+        mainScreenService.run();
     }
 
-    private static void delete() {
+    private void delete() {
         String station = InputView.requestDeleteStation();
 
         StationRepository.delete(station);
         OutputView.printDeleteStationComplete();
-        MainScreenService.run();
+        mainScreenService.run();
     }
 
-    private static void lookUp() {
+    private void lookUp() {
         OutputView.printStationList();
-        MainScreenService.run();
+        mainScreenService.run();
     }
 }
