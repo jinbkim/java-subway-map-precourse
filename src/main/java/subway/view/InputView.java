@@ -95,7 +95,20 @@ public class InputView {
 
     public static String requestLineManageScreenSelect() {
         OutputView.printLineManageScreen();
-        return SCANNER.nextLine();
+        try {
+            return validateLineManageScreenSelect(SCANNER.nextLine());
+        } catch (IllegalArgumentException e) {
+            OutputView.printWrongInput();
+            return requestLineManageScreenSelect();
+        }
+    }
+
+    static String validateLineManageScreenSelect(String input) {
+        input = Utils.deleteAllSpace(input);
+        if (!Pattern.matches(LINE_MANAGE_SCREEN_SELECT_REGEX, input)) {
+            throw new IllegalArgumentException();
+        }
+        return input;
     }
 
     public static String requestRegisterLine() {
