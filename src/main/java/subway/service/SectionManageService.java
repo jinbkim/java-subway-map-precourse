@@ -6,7 +6,7 @@ import subway.repository.SubwayMapRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class SectionManageService extends Service {
+public class SectionManageService extends ManageService {
 
     private final Map<String, Runnable> selectAndAction = new HashMap<>();
     private final MainScreenService mainScreenService;
@@ -19,28 +19,31 @@ public class SectionManageService extends Service {
         this.mainScreenService = mainScreenService;
     }
 
+    @Override
     public void run() {
         String sectionManageScreenSelect = InputView.requestSectionManageScreenSelect();
 
         selectAndAction.get(sectionManageScreenSelect)
             .run();
+        mainScreenService.run();
     }
 
-    private void register() {
+    @Override
+    protected void register() {
         String line = InputView.requestRegisterSectionLine();
         String station = InputView.requestRegisterSectionStation();
         int order = InputView.requestRegisterSectionOrder();
 
         SubwayMapRepository.addStations(line, station, order);
-        mainScreenService.run();
+        OutputView.printRegisterSectionComplete();
     }
 
-    private void delete() {
+    @Override
+    protected void delete() {
         String line = InputView.requestDeleteSectionLine();
         String station = InputView.requestDeleteSectionStation();
 
         SubwayMapRepository.deleteSection(line, station);
         OutputView.printDeleteSectionComplete();
-        mainScreenService.run();
     }
 }

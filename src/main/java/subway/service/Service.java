@@ -11,4 +11,5 @@ public abstract class Service {
     protected static final String UPPER_QUIT = "Q";
     protected static final String LOWER_QUIT = "q";
 
+    public abstract void run();
 }

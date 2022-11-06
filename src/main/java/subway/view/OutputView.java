@@ -34,6 +34,7 @@ public class OutputView {
     private static final String REQUEST_LINE = "노선을 입력하세요.";
     private static final String REQUEST_STATION = "역이름을 입력하세요.";
     private static final String REQUEST_ORDER = "순서를 입력하세요.";
+    private static final String REGISTER_SECTION_COMPLETE = "구간이 등록되었습니다.";
     private static final String REQUEST_DELETE_SECTION_LINE = "삭제할 구간의 노선을 입력하세요.";
     private static final String REQUEST_DELETE_SECTION_STATION = "삭제할 구간의 역을 입력하세요.";
     private static final String DELETE_SECTION_COMPLETE = "구간이 삭제되었습니다.";
@@ -183,6 +184,11 @@ public class OutputView {
     public static void printRequestDeleteSectionLine() {
         System.out.println();
         printMessage(REQUEST_DELETE_SECTION_LINE);
+    }
+
+    public static void printRegisterSectionComplete() {
+        System.out.println();
+        printMessage(REGISTER_SECTION_COMPLETE);
     }
 
     public static void printRequestDeleteSectionStation() {

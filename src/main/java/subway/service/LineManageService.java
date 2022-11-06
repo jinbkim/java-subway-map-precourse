@@ -8,7 +8,7 @@ import subway.repository.SubwayMapRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class LineManageService extends Service {
+public class LineManageService extends ManageService {
 
     private final Map<String, Runnable> selectAndAction = new HashMap<>();
     private final MainScreenService mainScreenService;
@@ -16,20 +16,23 @@ public class LineManageService extends Service {
     public LineManageService(MainScreenService mainScreenService) {
         selectAndAction.put(ONE, this::register);
         selectAndAction.put(TWO, this::delete);
-        selectAndAction.put(THREE, this::lookUp);
+        selectAndAction.put(THREE, OutputView::printLineList);
         selectAndAction.put(UPPER_BACK, mainScreenService::run);
         selectAndAction.put(LOWER_BACK, mainScreenService::run);
         this.mainScreenService = mainScreenService;
     }
 
+    @Override
     public void run() {
         String lineManageScreenSelect = InputView.requestLineManageScreenSelect();
 
         selectAndAction.get(lineManageScreenSelect)
             .run();
+        mainScreenService.run();
     }
 
-    private void register() {
+    @Override
+    protected void register() {
         String line = InputView.requestRegisterLine();
         String firstStation = InputView.requestRegisterLineFirstStation();
         String lastStation = InputView.requestRegisterLineLastStation();
@@ -37,21 +40,14 @@ public class LineManageService extends Service {
         LineRepository.add(line);
         SubwayMapRepository.addStations(line, List.of(firstStation, lastStation));
         OutputView.printRegisterLineComplete();
-        mainScreenService.run();
     }
 
-    private void delete() {
+    @Override
+    protected void delete() {
         String line = InputView.requestDeleteLine();
 
         SubwayMapRepository.deleteLine(line);
         LineRepository.delete(line);
         OutputView.printDeleteLineComplete();
-        mainScreenService.run();
-    }
-
-    private void lookUp() {
-        OutputView.printLineList();
-        mainScreenService.run();
-
     }
 }
