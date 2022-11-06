@@ -18,13 +18,13 @@ public class Stations {
 
     public boolean isExist(String stationName) {
         return stations.stream()
-            .anyMatch(station -> station.isSameName(stationName));
+                .anyMatch(station -> station.isSameName(stationName));
     }
 
     public void delete(String stationName) {
         stations = stations.stream()
-            .filter(station -> !station.isSameName(stationName))
-            .collect(Collectors.toList());
+                .filter(station -> !station.isSameName(stationName))
+                .collect(Collectors.toList());
     }
 
     public void add(Station station, int order) {

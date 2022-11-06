@@ -55,7 +55,7 @@ public class OutputView {
         System.out.println();
         printMessage(SUBWAY_MAP);
         SubwayMapRepository.get()
-            .forEach(OutputView::printSubwayMap);
+                .forEach(OutputView::printSubwayMap);
     }
 
     private static void printSubwayMap(Line line, Stations stations) {
@@ -66,7 +66,7 @@ public class OutputView {
 
     private static void printStations(Stations stations) {
         stations.get()
-            .forEach(OutputView::printStation);
+                .forEach(OutputView::printStation);
         System.out.println();
     }
 
@@ -78,14 +78,14 @@ public class OutputView {
         System.out.println();
         printMessage(STATION_LIST);
         StationRepository.get()
-            .forEach(OutputView::printStation);
+                .forEach(OutputView::printStation);
     }
 
     public static void printLineList() {
         System.out.println();
         printMessage(LINE_LIST);
         LineRepository.get()
-            .forEach(line -> printInfoMessage(line.getName()));
+                .forEach(line -> printInfoMessage(line.getName()));
     }
 
     public static void printMainScreen() {

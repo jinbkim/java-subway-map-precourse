@@ -24,7 +24,7 @@ public class SectionManageService extends ManageService {
         String sectionManageScreenSelect = InputView.requestSectionManageScreenSelect();
 
         selectAndAction.get(sectionManageScreenSelect)
-            .run();
+                .run();
         mainScreenService.run();
     }
 

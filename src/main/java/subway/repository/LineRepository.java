@@ -14,10 +14,10 @@ public class LineRepository {
 
     public static Line findLineByName(String lineName) {
         return lines.get()
-            .stream()
-            .filter(line -> line.isSameName(lineName))
-            .findAny()
-            .orElse(null);
+                .stream()
+                .filter(line -> line.isSameName(lineName))
+                .findAny()
+                .orElse(null);
     }
 
     public static List<Line> get() {

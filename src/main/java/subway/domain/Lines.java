@@ -18,7 +18,7 @@ public class Lines {
 
     public void delete(String lineName) {
         lines = lines.stream()
-            .filter(line -> !line.isSameName(lineName))
-            .collect(Collectors.toList());
+                .filter(line -> !line.isSameName(lineName))
+                .collect(Collectors.toList());
     }
 }

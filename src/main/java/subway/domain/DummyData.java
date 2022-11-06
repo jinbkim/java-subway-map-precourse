@@ -31,6 +31,6 @@ public enum DummyData {
 
     private static Map<String, List<String>> getAllDummyData() {
         return Arrays.stream(values())
-            .collect(Collectors.toMap(data -> data.line, data -> data.stations));
+                .collect(Collectors.toMap(data -> data.line, data -> data.stations));
     }
 }

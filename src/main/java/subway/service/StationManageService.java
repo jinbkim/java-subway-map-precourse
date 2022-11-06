@@ -25,7 +25,7 @@ public class StationManageService extends ManageService {
         String stationManageScreenSelect = InputView.requestStationManageScreenSelect();
 
         selectAndAction.get(stationManageScreenSelect)
-            .run();
+                .run();
         mainScreenService.run();
     }
 

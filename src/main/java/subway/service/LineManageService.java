@@ -27,7 +27,7 @@ public class LineManageService extends ManageService {
         String lineManageScreenSelect = InputView.requestLineManageScreenSelect();
 
         selectAndAction.get(lineManageScreenSelect)
-            .run();
+                .run();
         mainScreenService.run();
     }
 

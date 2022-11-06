@@ -26,7 +26,7 @@ public class MainScreenService extends Service {
         String mainScreenSelect = InputView.requestMainScreenSelect();
 
         selectAndAction.get(mainScreenSelect)
-            .run();
+                .run();
     }
 
     private void lookUp() {
