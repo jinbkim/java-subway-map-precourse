@@ -24,7 +24,7 @@ public enum DummyData {
 
         lineAndStations.forEach((lineName, stationsName) -> {
             LineRepository.add(lineName);
-            stationsName.forEach(stationName -> StationRepository.add(stationName));
+            stationsName.forEach(StationRepository::add);
             SubwayMapRepository.addStations(lineName, stationsName);
         });
     }

@@ -8,11 +8,12 @@ import subway.view.OutputView;
 public class MainScreenService extends Service {
 
     private final Map<String, Runnable> selectAndAction = new HashMap<>();
-    private final StationManageService stationManageService = new StationManageService(this);
-    private final LineManageService lineManageService = new LineManageService(this);
-    private final SectionManageService sectionManageService = new SectionManageService(this);
 
     public MainScreenService() {
+        StationManageService stationManageService = new StationManageService(this);
+        LineManageService lineManageService = new LineManageService(this);
+        SectionManageService sectionManageService = new SectionManageService(this);
+
         selectAndAction.put(ONE, stationManageService::run);
         selectAndAction.put(TWO, lineManageService::run);
         selectAndAction.put(THREE, sectionManageService::run);

@@ -11,7 +11,6 @@ import subway.utis.Utils;
 public class SubwayMapRepository {
 
     private static final Map<Line, Stations> lineAndStations = new HashMap<>();
-    private static int ZERO = 0;
 
     public static void addStations(String lineName, List<String> stationsName) {
         lineName = Utils.deleteAllSpace(lineName);

@@ -4,7 +4,7 @@ import subway.utis.Utils;
 
 public class Station {
 
-    private String name;
+    private final String name;
 
     public Station(String name) {
         this.name = Utils.deleteAllSpace(name);
