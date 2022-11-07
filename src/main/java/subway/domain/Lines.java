@@ -22,7 +22,7 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
-    public boolean isExistLineName(String lineName) {
+    public boolean isExist(String lineName) {
         return lines.stream()
                 .anyMatch(line -> line.isSameName(lineName));
     }

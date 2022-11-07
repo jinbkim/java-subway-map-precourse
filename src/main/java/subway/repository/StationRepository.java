@@ -9,7 +9,7 @@ public class StationRepository {
     private static Stations stations = new Stations();
 
     public static void add(String stationName) {
-        if (!stations.isExistStationName(stationName)) {
+        if (!stations.isExist(stationName)) {
             stations.add(new Station(stationName));
         }
     }
@@ -22,8 +22,8 @@ public class StationRepository {
         stations.delete(stationName);
     }
 
-    public static boolean isExistStationName(String stationName) {
-        return stations.isExistStationName(stationName);
+    public static boolean isExist(String stationName) {
+        return stations.isExist(stationName);
     }
 
     public static void clear() {

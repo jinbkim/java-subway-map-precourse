@@ -30,12 +30,12 @@ public class InputView {
         }
     }
 
-    static String validateMainScreenSelect(String input) {
-        input = Utils.deleteAllSpace(input);
-        if (!Pattern.matches(MAIN_SCREEN_SELECT_REGEX, input)) {
+    static String validateMainScreenSelect(String mainScreenSelect) {
+        mainScreenSelect = Utils.deleteAllSpace(mainScreenSelect);
+        if (!Pattern.matches(MAIN_SCREEN_SELECT_REGEX, mainScreenSelect)) {
             throw new IllegalArgumentException();
         }
-        return input;
+        return mainScreenSelect;
     }
 
     public static String requestStationManageScreenSelect() {
@@ -48,12 +48,12 @@ public class InputView {
         }
     }
 
-    static String validateStationManageScreenSelect(String input) {
-        input = Utils.deleteAllSpace(input);
-        if (!Pattern.matches(STATION_MANAGE_SCREEN_SELECT_REGEX, input)) {
+    static String validateStationManageScreenSelect(String stationManageScreenSelect) {
+        stationManageScreenSelect = Utils.deleteAllSpace(stationManageScreenSelect);
+        if (!Pattern.matches(STATION_MANAGE_SCREEN_SELECT_REGEX, stationManageScreenSelect)) {
             throw new IllegalArgumentException();
         }
-        return input;
+        return stationManageScreenSelect;
     }
 
     public static String requestRegisterStation() {
@@ -66,16 +66,16 @@ public class InputView {
         }
     }
 
-    static String validateRegisterStation(String input) {
-        input = Utils.deleteAllSpace(input);
-        if (!Pattern.matches(STATION_REGEX, input) || isExistStationName(input)) {
+    static String validateRegisterStation(String registerStationInput) {
+        registerStationInput = Utils.deleteAllSpace(registerStationInput);
+        if (!Pattern.matches(STATION_REGEX, registerStationInput) || isExistStation(registerStationInput)) {
             throw new IllegalArgumentException();
         }
-        return input;
+        return registerStationInput;
     }
 
-    private static boolean isExistStationName(String stationName) {
-        return StationRepository.isExistStationName(stationName);
+    private static boolean isExistStation(String stationName) {
+        return StationRepository.isExist(stationName);
     }
 
     public static String requestDeleteStation() {
@@ -88,12 +88,12 @@ public class InputView {
         }
     }
 
-    static String validateIsExistStation(String input) {
-        input = Utils.deleteAllSpace(input);
-        if (!StationRepository.isExistStationName(input)) {
+    static String validateIsExistStation(String stationName) {
+        stationName = Utils.deleteAllSpace(stationName);
+        if (!StationRepository.isExist(stationName)) {
             throw new IllegalArgumentException();
         }
-        return input;
+        return stationName;
     }
 
     public static String requestLineManageScreenSelect() {
@@ -106,12 +106,12 @@ public class InputView {
         }
     }
 
-    static String validateLineManageScreenSelect(String input) {
-        input = Utils.deleteAllSpace(input);
-        if (!Pattern.matches(LINE_MANAGE_SCREEN_SELECT_REGEX, input)) {
+    static String validateLineManageScreenSelect(String lineManageScreenSelect) {
+        lineManageScreenSelect = Utils.deleteAllSpace(lineManageScreenSelect);
+        if (!Pattern.matches(LINE_MANAGE_SCREEN_SELECT_REGEX, lineManageScreenSelect)) {
             throw new IllegalArgumentException();
         }
-        return input;
+        return lineManageScreenSelect;
     }
 
     public static String requestRegisterLine() {
@@ -124,16 +124,16 @@ public class InputView {
         }
     }
 
-    static String validateRegisterLine(String input) {
-        input = Utils.deleteAllSpace(input);
-        if (!Pattern.matches(LINE_REGEX, input) || isExistLineName(input)) {
+    static String validateRegisterLine(String registerLineInput) {
+        registerLineInput = Utils.deleteAllSpace(registerLineInput);
+        if (!Pattern.matches(LINE_REGEX, registerLineInput) || isExistLine(registerLineInput)) {
             throw new IllegalArgumentException();
         }
-        return input;
+        return registerLineInput;
     }
 
-    private static boolean isExistLineName(String lineName) {
-        return LineRepository.isExistLineName(lineName);
+    private static boolean isExistLine(String lineName) {
+        return LineRepository.isExist(lineName);
     }
 
     public static String requestRegisterLineFirstStation() {
@@ -146,12 +146,12 @@ public class InputView {
         }
     }
 
-    static String validateRegisterLineFirstStation(String input) {
-        input = Utils.deleteAllSpace(input);
-        if (!StationRepository.isExistStationName(input)) {
+    static String validateRegisterLineFirstStation(String firstStation) {
+        firstStation = Utils.deleteAllSpace(firstStation);
+        if (!StationRepository.isExist(firstStation)) {
             throw new IllegalArgumentException();
         }
-        return input;
+        return firstStation;
     }
 
     public static String requestRegisterLineLastStation(String firstStation) {
@@ -164,13 +164,13 @@ public class InputView {
         }
     }
 
-    static String validateRegisterLineLastStation(String input, String firstStation) {
-        input = Utils.deleteAllSpace(input);
+    static String validateRegisterLineLastStation(String lastStation, String firstStation) {
+        lastStation = Utils.deleteAllSpace(lastStation);
         firstStation = Utils.deleteAllSpace(firstStation);
-        if (input.equals(firstStation) || !StationRepository.isExistStationName(input)) {
+        if (lastStation.equals(firstStation) || !StationRepository.isExist(lastStation)) {
             throw new IllegalArgumentException();
         }
-        return input;
+        return lastStation;
     }
 
     public static String requestDeleteLine() {
@@ -183,12 +183,12 @@ public class InputView {
         }
     }
 
-    static String validateIsExistLine(String input) {
-        input = Utils.deleteAllSpace(input);
-        if (!LineRepository.isExistLineName(input)) {
+    static String validateIsExistLine(String lineName) {
+        lineName = Utils.deleteAllSpace(lineName);
+        if (!LineRepository.isExist(lineName)) {
             throw new IllegalArgumentException();
         }
-        return input;
+        return lineName;
     }
 
     public static String requestSectionManageScreenSelect() {
@@ -201,12 +201,12 @@ public class InputView {
         }
     }
 
-    static String validateSectionManageScreenSelect(String input) {
-        input = Utils.deleteAllSpace(input);
-        if (!Pattern.matches(SECTION_MANAGE_SCREEN_SELECT_REGEX, input)) {
+    static String validateSectionManageScreenSelect(String sectionManageScreenSelect) {
+        sectionManageScreenSelect = Utils.deleteAllSpace(sectionManageScreenSelect);
+        if (!Pattern.matches(SECTION_MANAGE_SCREEN_SELECT_REGEX, sectionManageScreenSelect)) {
             throw new IllegalArgumentException();
         }
-        return input;
+        return sectionManageScreenSelect;
     }
 
     public static String requestRegisterSectionLine() {
@@ -231,7 +231,7 @@ public class InputView {
 
     public static String validateRegisterSectionStation(String stationName, String lineName) {
         stationName = Utils.deleteAllSpace(stationName);
-        if (SubwayMapRepository.isExistSection(lineName, stationName) || !StationRepository.isExistStationName(stationName)) {
+        if (SubwayMapRepository.isExistSection(lineName, stationName) || !StationRepository.isExist(stationName)) {
             throw new IllegalArgumentException();
         }
         return validateIsExistStation(stationName);
@@ -247,13 +247,13 @@ public class InputView {
         }
     }
 
-    static int validateRegisterSectionOrder(String input, String lineName) {
-        input = Utils.deleteAllSpace(input);
+    static int validateRegisterSectionOrder(String orderInput, String lineName) {
+        orderInput = Utils.deleteAllSpace(orderInput);
         lineName = Utils.deleteAllSpace(lineName);
-        if (!Pattern.matches(ONLY_NUMBER_REGEX, input)) {
+        if (!Pattern.matches(ONLY_NUMBER_REGEX, orderInput)) {
             throw new IllegalArgumentException();
         }
-        int order = Integer.parseInt(input) - ONE;
+        int order = Integer.parseInt(orderInput) - ONE;
 
         if (isInvalidSectionStationOrderRange(lineName, order)) {
             throw new IllegalArgumentException();
@@ -276,12 +276,12 @@ public class InputView {
         }
     }
 
-    static String validateDeleteSectionLine(String input) {
-        input = Utils.deleteAllSpace(input);
-        if (!LineRepository.isExistLineName(input) || isInvalidSectionLineSize(input)) {
+    static String validateDeleteSectionLine(String lineName) {
+        lineName = Utils.deleteAllSpace(lineName);
+        if (!LineRepository.isExist(lineName) || isInvalidSectionLineSize(lineName)) {
             throw new IllegalArgumentException();
         }
-        return input;
+        return lineName;
     }
 
     private static boolean isInvalidSectionLineSize(String lineName) {

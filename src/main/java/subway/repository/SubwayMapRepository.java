@@ -13,8 +13,7 @@ public class SubwayMapRepository {
     private static final Map<Line, Stations> lineAndStations = new HashMap<>();
 
     public static void addStations(String lineName, List<String> stationsName) {
-        lineName = Utils.deleteAllSpace(lineName);
-        Line line = LineRepository.findLineByName(lineName);
+        Line line = LineRepository.findLineByName(Utils.deleteAllSpace(lineName));
         Stations stations = findStationsByLine(line);
         stationsName.forEach(stationName -> stations.add(new Station(stationName)));
     }
@@ -53,7 +52,7 @@ public class SubwayMapRepository {
         Line line = LineRepository.findLineByName(lineName);
         Stations stations = findStationsByLine(line);
 
-        return stations.isExistStationName(stationName);
+        return stations.isExist(stationName);
     }
 
     public static int findLineSize(String lineName) {

@@ -28,8 +28,8 @@ public class LineRepository {
         lines.delete(lineName);
     }
 
-    public static boolean isExistLineName(String lineName) {
-        return lines.isExistLineName(lineName);
+    public static boolean isExist(String lineName) {
+        return lines.isExist(lineName);
     }
 
     public static void clear() {

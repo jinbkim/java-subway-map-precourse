@@ -16,21 +16,35 @@ public class OutputView {
     private static final String SUBWAY_MAP = "지하철 노선도";
     private static final String STATION_LIST = "역 목록";
     private static final String LINE_LIST = "노선 목록";
-    private static final String MAIN_SCREEN = "메인 화면\n" + "1. 역 관리\n" + "2. 노선 관리\n" + "3. 구간 관리\n" + "4. 지하철 노선도 출력\n" + "Q. 종료";
+    private static final String MAIN_SCREEN = "메인 화면";
+    private static final String STATION_MANAGE = "1. 역 관리";
+    private static final String LINE_MANAGE = "2. 노선 관리";
+    private static final String SECTION_MANAGE = "3. 구간 관리";
+    private static final String PRINT_SUBWAY_MAP = "4. 지하철 노선도 출력";
+    private static final String QUIT = "Q. 종료";
     private static final String SELECT_FUNCTION = "원하는 기능을 선택하세요.";
-    private static final String STATION_MANAGE_SCREEN = "역 관리 화면\n" + "1. 역 등록\n" + "2. 역 삭제\n" + "3. 역 조회\n" + "B. 돌아가기";
+    private static final String STATION_MANAGE_SCREEN = "역 관리 화면";
+    private static final String REGISTER_STATION = "1. 역 등록";
+    private static final String DELETE_STATION = "2. 역 삭제";
+    private static final String LOOK_UP_STATION = "3. 역 조회";
+    private static final String GO_BACK = "B. 돌아가기";
     private static final String REQUEST_REGISTER_STATION = "등록할 역 이름을 입력하세요.";
     private static final String REGISTER_STATION_COMPLETE = "지하철 역이 등록되었습니다.";
     private static final String REQUEST_DELETE_STATION = "삭제할 역 이름을 입력하세요.";
     private static final String DELETE_STATION_COMPLETE = "지하철 역이 삭제되었습니다.";
-    private static final String LINE_MANAGE_SCREEN = "노선 관리 화면\n" + "1. 노선 등록\n" + "2. 노선 삭제\n" + "3. 노선 조회\n" + "B. 돌아가기";
+    private static final String LINE_MANAGE_SCREEN = "노선 관리 화면";
+    private static final String REGISTER_LINE = "1. 노선 등록";
+    private static final String DELETE_LINE = "2. 노선 삭제";
+    private static final String LOOK_UP_LINE = "3. 노선 조회";
     private static final String REQUEST_REGISTER_LINE = "등록할 노선 이름을 입력하세요.";
     private static final String REQUEST_REGISTER_LINE_FIRST_STATION = "등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String REQUEST_REGISTER_LINE_LAST_STATION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
     private static final String REGISTER_LINE_COMPLETE = "지하철 노선이 등록되었습니다.";
     private static final String REQUEST_DELETE_LINE = "삭제할 노선 이름을 입력하세요.";
     private static final String DELETE_LINE_COMPLETE = "지하철 노선이 삭제되었습니다.";
-    private static final String SECTION_MANAGE_SCREEN = "구간 관리 화면\n" + "1. 구간 등록\n" + "2. 구간 삭제\n" + "B. 돌아가기";
+    private static final String SECTION_MANAGE_SCREEN = "구간 관리 화면";
+    private static final String REGISTER_SECTION = "1. 구간 등록";
+    private static final String DELETE_SECTION = "2. 구간 삭제";
     private static final String REQUEST_LINE = "노선을 입력하세요.";
     private static final String REQUEST_STATION = "역이름을 입력하세요.";
     private static final String REQUEST_ORDER = "순서를 입력하세요.";
@@ -92,6 +106,11 @@ public class OutputView {
     public static void printMainScreen() {
         System.out.println();
         printMessage(MAIN_SCREEN);
+        System.out.println(STATION_MANAGE);
+        System.out.println(LINE_MANAGE);
+        System.out.println(SECTION_MANAGE);
+        System.out.println(PRINT_SUBWAY_MAP);
+        System.out.println(QUIT);
         System.out.println();
         printMessage(SELECT_FUNCTION);
     }
@@ -99,6 +118,10 @@ public class OutputView {
     public static void printStationManageScreen() {
         System.out.println();
         printMessage(STATION_MANAGE_SCREEN);
+        System.out.println(REGISTER_STATION);
+        System.out.println(DELETE_STATION);
+        System.out.println(LOOK_UP_STATION);
+        System.out.println(GO_BACK);
         System.out.println();
         printMessage(SELECT_FUNCTION);
     }
@@ -126,6 +149,10 @@ public class OutputView {
     public static void printLineManageScreen() {
         System.out.println();
         printMessage(LINE_MANAGE_SCREEN);
+        System.out.println(REGISTER_LINE);
+        System.out.println(DELETE_LINE);
+        System.out.println(LOOK_UP_LINE);
+        System.out.println(GO_BACK);
         System.out.println();
         printMessage(SELECT_FUNCTION);
     }
@@ -163,6 +190,9 @@ public class OutputView {
     public static void printSectionManageScreen() {
         System.out.println();
         printMessage(SECTION_MANAGE_SCREEN);
+        System.out.println(REGISTER_SECTION);
+        System.out.println(DELETE_SECTION);
+        System.out.println(GO_BACK);
         System.out.println();
         printMessage(SELECT_FUNCTION);
     }

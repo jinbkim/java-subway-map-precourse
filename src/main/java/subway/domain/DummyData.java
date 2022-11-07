@@ -9,7 +9,9 @@ import subway.repository.StationRepository;
 import subway.repository.SubwayMapRepository;
 
 public enum DummyData {
-    TWO("2호선", Arrays.asList("교대역", "강남역", "역삼역")), THREE("3호선", Arrays.asList("교대역", "남부터미널역", "양재역", "매봉역")), SHIN_BUN_DANG("신분당선", Arrays.asList("강남역", "양재역", "양재시민의숲역"));
+    TWO("2호선", Arrays.asList("교대역", "강남역", "역삼역")),
+    THREE("3호선", Arrays.asList("교대역", "남부터미널역", "양재역", "매봉역")),
+    SHIN_BUN_DANG("신분당선", Arrays.asList("강남역", "양재역", "양재시민의숲역"));
 
     private final String line;
     private final List<String> stations;
