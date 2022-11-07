@@ -16,7 +16,7 @@ public class LineManageService extends ManageService {
     public LineManageService(MainScreenService mainScreenService) {
         selectAndAction.put(ONE, this::register);
         selectAndAction.put(TWO, this::delete);
-        selectAndAction.put(THREE, OutputView::printLineList);
+        selectAndAction.put(THREE, this::lookUp);
         selectAndAction.put(UPPER_BACK, mainScreenService::run);
         selectAndAction.put(LOWER_BACK, mainScreenService::run);
         this.mainScreenService = mainScreenService;
@@ -49,6 +49,11 @@ public class LineManageService extends ManageService {
         SubwayMapRepository.deleteLine(line);
         LineRepository.delete(line);
         OutputView.printDeleteLineComplete();
+        mainScreenService.run();
+    }
+
+    public void lookUp() {
+        OutputView.printLineList();
         mainScreenService.run();
     }
 }

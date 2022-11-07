@@ -14,7 +14,7 @@ public class StationManageService extends ManageService {
     public StationManageService(MainScreenService mainScreenService) {
         selectAndAction.put(ONE, this::register);
         selectAndAction.put(TWO, this::delete);
-        selectAndAction.put(THREE, OutputView::printStationList);
+        selectAndAction.put(THREE, this::lookUp);
         selectAndAction.put(UPPER_BACK, mainScreenService::run);
         selectAndAction.put(LOWER_BACK, mainScreenService::run);
         this.mainScreenService = mainScreenService;
@@ -43,6 +43,11 @@ public class StationManageService extends ManageService {
 
         StationRepository.delete(station);
         OutputView.printDeleteStationComplete();
+        mainScreenService.run();
+    }
+
+    public void lookUp() {
+        OutputView.printStationList();
         mainScreenService.run();
     }
 }
