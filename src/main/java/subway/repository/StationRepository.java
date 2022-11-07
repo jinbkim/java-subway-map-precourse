@@ -6,7 +6,7 @@ import subway.domain.Stations;
 
 public class StationRepository {
 
-    private static final Stations stations = new Stations();
+    private static Stations stations = new Stations();
 
     public static void add(String stationName) {
         if (!stations.isExistStationName(stationName)) {
@@ -24,5 +24,9 @@ public class StationRepository {
 
     public static boolean isExistStationName(String stationName) {
         return stations.isExistStationName(stationName);
+    }
+
+    public static void clear() {
+        stations = new Stations();
     }
 }

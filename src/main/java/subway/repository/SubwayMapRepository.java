@@ -6,6 +6,7 @@ import java.util.Map;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.domain.Stations;
+import subway.utis.Utils;
 
 public class SubwayMapRepository {
 
@@ -13,6 +14,7 @@ public class SubwayMapRepository {
     private static int ZERO = 0;
 
     public static void addStations(String lineName, List<String> stationsName) {
+        lineName = Utils.deleteAllSpace(lineName);
         Line line = LineRepository.findLineByName(lineName);
         Stations stations = findStationsByLine(line);
         stationsName.forEach(stationName -> stations.add(new Station(stationName)));

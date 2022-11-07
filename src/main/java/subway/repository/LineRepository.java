@@ -6,7 +6,7 @@ import subway.domain.Lines;
 
 public class LineRepository {
 
-    private static final Lines lines = new Lines();
+    private static Lines lines = new Lines();
 
     public static void add(String lineName) {
         lines.add(new Line(lineName));
@@ -30,5 +30,9 @@ public class LineRepository {
 
     public static boolean isExistLineName(String lineName) {
         return lines.isExistLineName(lineName);
+    }
+
+    public static void clear() {
+        lines = new Lines();
     }
 }
