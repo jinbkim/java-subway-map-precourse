@@ -22,11 +22,13 @@ public enum DummyData {
     public static void insert() {
         Map<String, List<String>> lineAndStations = getAllDummyData();
 
-        lineAndStations.forEach((lineName, stationsName) -> {
-            LineRepository.add(lineName);
-            stationsName.forEach(StationRepository::add);
-            SubwayMapRepository.addStations(lineName, stationsName);
-        });
+        lineAndStations.forEach(DummyData::insert);
+    }
+
+    private static void insert(String lineName, List<String> stationsName) {
+        LineRepository.add(lineName);
+        stationsName.forEach(StationRepository::add);
+        SubwayMapRepository.addStations(lineName, stationsName);
     }
 
     private static Map<String, List<String>> getAllDummyData() {
